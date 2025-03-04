@@ -80,7 +80,7 @@ const About = () => {
           <h2 className="text-3xl md:text-5xl font-semibold mb-6">
             Professionell Trädvård för Alla Behov
           </h2>
-          <p style="text-align: justify;">
+          <div id="justify"> <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
 
            
            Vår filosofi och vårt mål är att utföra tjänster av högsta kvalitet inom all trädvård och vi erbjuder ärliga och kloka råd för de projekt som vi åtar oss. Vi strävar efter att uppmärksamma trädens viktiga roll i vår miljö och att våra kunder får rätt slags vård för sina träd.
@@ -90,7 +90,7 @@ Hardimans Trädvård bryr sig om alla sina kunder, stora som små och vi är kä
 
 Vårt sätt att tänka: Den som bryr sig om träd bryr sig även om dess ägare. Kontakta oss för ett kostnadsförslag. Längst ner finner du telefonnummer och e-mailadress
           </p>
-        </div>
+        </div></div>
         
         {/* Services grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
