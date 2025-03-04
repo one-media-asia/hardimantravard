@@ -49,10 +49,10 @@ const Navigation = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-{/*         Logo */}
+        Logo
         <a href="#home" className="flex items-center gap-2 text-2xl font-serif font-semibold transition-all hover:opacity-80">
-{/*           <TreeDeciduous className="h-7 w-7 text-primary" /> */}
-         <img src="https://hardiman.se/logo.png" width="50" height="50"></img> <span>Välkomna till Hardimans Trädvård</span>
+          <TreeDeciduous className="h-7 w-7 text-primary" />
+          <span>Välkomna till Hardimans Trädvård</span>
         </a>
 
         {/* Desktop Navigation */}
