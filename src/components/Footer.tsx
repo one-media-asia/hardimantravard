@@ -78,7 +78,7 @@ const Footer = () => {
               <h4 className="font-medium">Plats</h4>
             </div>
             <p className="text-muted-foreground">
-              Stockholm, Göteborg, Malmö & hela Sverige
+              Göteborg, Malmö & hela Sverige
             </p>
           </div>
         </div>
