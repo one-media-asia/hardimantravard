@@ -10,6 +10,9 @@ import Footer from '@/components/Footer';
 const Index = () => {
   // Add intersection observer for animations
   useEffect(() => {
+    // Update document title
+    document.title = "TrädKirurgen - Professionell Trädvård i Sverige";
+    
     // Add grid pattern to the body
     document.body.classList.add('bg-grid-pattern');
     

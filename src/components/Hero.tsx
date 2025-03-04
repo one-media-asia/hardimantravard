@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, TreeDeciduous, TreePine, Trees } from "lucide-react";
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,6 +22,11 @@ const Hero = () => {
     <section 
       id="home" 
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 px-6"
+      style={{
+        backgroundImage: "linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2048&q=80')",
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+      }}
     >
       {/* Background subtle pattern */}
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] pointer-events-none"></div>
@@ -31,16 +36,16 @@ const Hero = () => {
         {/* Hero text content */}
         <div className={`flex-1 space-y-8 transition-all duration-1000 delay-100 transform ${isLoaded ? 'opacity-100' : 'opacity-0 translate-y-12'}`}>
           <div>
-            <h4 className="text-sm md:text-base text-muted-foreground uppercase tracking-widest mb-3 font-sans">
-              Premium Digital Solutions
+            <h4 className="text-sm md:text-base text-primary uppercase tracking-widest mb-3 font-sans font-semibold">
+              Professionell Trädvård i Sverige
             </h4>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold mb-4 leading-tight">
-              Where <span className="text-foreground/90">Design</span><br />
-              Meets <span className="text-foreground/90">Innovation</span>
+              Expert <span className="text-primary">Trädkirurgi</span><br />
+              & <span className="text-primary">Trädvård</span>
             </h1>
             <p className="text-base md:text-lg text-muted-foreground max-w-md md:max-w-xl">
-              Creating exceptional digital experiences that merge elegance with functionality. 
-              We craft solutions that elevate your brand and engage your audience.
+              Vi erbjuder specialiserade träd- och skogsvårdstjänster med fokus på säkerhet, 
+              miljö och kvalitet. Certifierade arborister med över 20 års erfarenhet.
             </p>
           </div>
           
@@ -49,14 +54,14 @@ const Hero = () => {
               onClick={() => scrollToSection('contact')}
               className="font-medium rounded-full px-7 py-6 text-base hover:translate-y-[-2px] transition-all"
             >
-              Get Started
+              Kontakta Oss
             </Button>
             <Button 
               variant="outline" 
-              onClick={() => scrollToSection('work')}
+              onClick={() => scrollToSection('about')}
               className="font-medium rounded-full px-7 py-6 text-base hover:translate-y-[-2px] transition-all"
             >
-              View Portfolio
+              Våra Tjänster
             </Button>
           </div>
         </div>
@@ -64,11 +69,23 @@ const Hero = () => {
         {/* Hero image/visual */}
         <div className={`flex-1 transition-all duration-1000 delay-300 transform ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-lg'}`}>
           <div className="relative aspect-square max-w-md mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 rounded-full animate-pulse duration-4000"></div>
-            <div className="absolute inset-10 bg-gradient-to-tr from-primary/10 to-primary/5 rounded-full animate-pulse duration-7000 delay-1000"></div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-4/5 h-4/5 bg-secondary/80 backdrop-blur-sm rounded-3xl shadow-2xl transform -rotate-6 transition-transform hover:rotate-0 duration-700"></div>
-              <div className="absolute w-4/5 h-4/5 bg-accent/70 backdrop-blur-sm rounded-3xl shadow-xl transform rotate-3 transition-transform hover:rotate-0 duration-700"></div>
+              <div className="w-full h-full bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl flex items-center justify-center p-6">
+                <div className="grid grid-cols-2 gap-6 w-full h-full">
+                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center">
+                    <TreeDeciduous className="h-20 w-20 text-primary" />
+                  </div>
+                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center">
+                    <TreePine className="h-20 w-20 text-primary" />
+                  </div>
+                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center">
+                    <Trees className="h-20 w-20 text-primary" />
+                  </div>
+                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center">
+                    <div className="text-primary font-serif font-bold text-4xl">20+</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -79,7 +96,7 @@ const Hero = () => {
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer animate-bounce"
         onClick={() => scrollToSection('about')}
       >
-        <ArrowDown className="h-6 w-6 text-muted-foreground/70" />
+        <ArrowDown className="h-6 w-6 text-primary" />
       </div>
     </section>
   );

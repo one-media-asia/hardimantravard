@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, TreeDeciduous } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Navigation = () => {
@@ -50,21 +50,27 @@ const Navigation = () => {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="text-2xl font-serif font-semibold transition-all hover:opacity-80">
-          hardiman.se
+        <a href="#home" className="flex items-center gap-2 text-2xl font-serif font-semibold transition-all hover:opacity-80">
+          <TreeDeciduous className="h-7 w-7 text-primary" />
+          <span>TrädKirurgen</span>
         </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
           <ul className="flex items-center space-x-10">
-            {['home', 'about', 'work', 'contact'].map((item) => (
-              <li key={item}>
+            {[
+              { id: 'home', label: 'Hem' },
+              { id: 'about', label: 'Tjänster' },
+              { id: 'work', label: 'Galleri' },
+              { id: 'contact', label: 'Kontakt' }
+            ].map((item) => (
+              <li key={item.id}>
                 <button
-                  onClick={() => handleLinkClick(item)}
+                  onClick={() => handleLinkClick(item.id)}
                   className="font-medium text-foreground/80 hover:text-foreground transition-all relative group py-2"
                 >
-                  {item.charAt(0).toUpperCase() + item.slice(1)}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-foreground transition-all duration-300 group-hover:w-full"></span>
+                  {item.label}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
                 </button>
               </li>
             ))}
@@ -92,13 +98,18 @@ const Navigation = () => {
       >
         <nav>
           <ul className="flex flex-col items-center space-y-8">
-            {['home', 'about', 'work', 'contact'].map((item) => (
-              <li key={item} className="w-full">
+            {[
+              { id: 'home', label: 'Hem' },
+              { id: 'about', label: 'Tjänster' },
+              { id: 'work', label: 'Galleri' },
+              { id: 'contact', label: 'Kontakt' }
+            ].map((item) => (
+              <li key={item.id} className="w-full">
                 <button
-                  onClick={() => handleLinkClick(item)}
+                  onClick={() => handleLinkClick(item.id)}
                   className="font-medium text-xl w-full text-center py-3 hover:bg-secondary rounded-md transition-colors"
                 >
-                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                  {item.label}
                 </button>
               </li>
             ))}
