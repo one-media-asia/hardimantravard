@@ -52,7 +52,7 @@ const Navigation = () => {
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2 text-2xl font-serif font-semibold transition-all hover:opacity-80">
           <TreeDeciduous className="h-7 w-7 text-primary" />
-          <span>Hardiman.se</span>
+          <span>Välkomna till Hardimans Trädvård</span>
         </a>
 
         {/* Desktop Navigation */}
