@@ -16,7 +16,7 @@ const Footer = () => {
           <div className="mb-6 md:mb-0">
             <a href="#home" className="flex items-center gap-2 text-2xl font-serif font-semibold hover:opacity-80 transition-opacity">
               <TreeDeciduous className="h-6 w-6 text-primary" />
-              <span>TrädKirurgen</span>
+              <span>Hardiman.se</span>
             </a>
           </div>
           
@@ -67,8 +67,8 @@ const Footer = () => {
               <Mail className="h-5 w-5 text-primary" />
               <h4 className="font-medium">E-post</h4>
             </div>
-            <a href="mailto:info@tradkirurgen.se" className="text-muted-foreground hover:text-foreground transition-colors">
-              info@tradkirurgen.se
+            <a href="mailto:info@hardiman.se" className="text-muted-foreground hover:text-foreground transition-colors">
+              info@hardiman.se
             </a>
           </div>
           
@@ -86,7 +86,7 @@ const Footer = () => {
         {/* Bottom section */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
           <div>
-            &copy; {currentYear} TrädKirurgen. Alla rättigheter förbehållna.
+            &copy; {currentYear} Hardiman.se. Alla rättigheter förbehållna.
           </div>
           
           {/* Certifications */}
