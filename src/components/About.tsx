@@ -80,14 +80,13 @@ const About = () => {
           <h2 className="text-3xl md:text-5xl font-semibold mb-6">
             Professionell Trädvård för Alla Behov
           </h2>
-{/*           <p className="text-muted-foreground text-lg max-w-2xl mx-auto"> */}
-           <div className="text-center mb-20 reveal">
-          <p className="text-base md:text-lg text-muted-foreground max-w-md md:max-w-xl">
-
+         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+         
+          
            
           Vår filosofi och vårt mål är att utföra tjänster av högsta kvalitet inom all trädvård och vi erbjuder ärliga och kloka råd för de projekt som vi åtar oss. Vi strävar efter att uppmärksamma trädens viktiga roll i vår miljö och att våra kunder får rätt slags vård för sina träd.
           </p>
-        </div></div>
+        </div>
         
         {/* Services grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
