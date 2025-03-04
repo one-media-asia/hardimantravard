@@ -16,7 +16,7 @@ const Footer = () => {
           <div className="mb-6 md:mb-0">
             <a href="#home" className="flex items-center gap-2 text-2xl font-serif font-semibold hover:opacity-80 transition-opacity">
               <TreeDeciduous className="h-6 w-6 text-primary" />
-              <span>Hardiman.se</span>
+              <span>Hardimans Trädvård</span>
             </a>
           </div>
           
