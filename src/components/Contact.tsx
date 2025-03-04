@@ -44,8 +44,8 @@ const Contact = () => {
     {
       icon: <MapPin className="h-6 w-6" />,
       title: "Plats",
-      details: "Stockholm, Sverige",
-      link: "https://maps.google.com/?q=Stockholm,Sweden"
+      details: "Göteborg, Sverige",
+      link: "https://maps.google.com/?q=Göteborg,Sweden"
     }
   ];
 
