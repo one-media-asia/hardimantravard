@@ -38,8 +38,8 @@ const Contact = () => {
     {
       icon: <Phone className="h-6 w-6" />,
       title: "Telefon",
-      details: "070-123 45 67",
-      link: "tel:+46701234567"
+      details: "073-370-5058",
+      link: "tel:+46733705058"
     },
     {
       icon: <MapPin className="h-6 w-6" />,
