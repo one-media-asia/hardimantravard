@@ -80,7 +80,7 @@ const About = () => {
           <h2 className="text-3xl md:text-5xl font-semibold mb-6">
             Professionell Trädvård för Alla Behov
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p justify className="text-muted-foreground text-lg max-w-2xl mx-auto">
            Vår filosofi och vårt mål är att utföra tjänster av högsta kvalitet inom all trädvård och vi erbjuder ärliga och kloka råd för de projekt som vi åtar oss. Vi strävar efter att uppmärksamma trädens viktiga roll i vår miljö och att våra kunder får rätt slags vård för sina träd.
 
 Våra kunder är kommuner, kyrkoförvaltningar, byggföretag, bostadsrättsföreningar fastighetsägare och många privata markägare.
