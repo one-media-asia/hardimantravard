@@ -26,7 +26,6 @@ const Footer = () => {
               {[
                 {id: 'home', label: 'Hem'},
                 {id: 'about', label: 'Tjänster'}, 
-                {id: 'work', label: 'Galleri'}, 
                 {id: 'contact', label: 'Kontakt'}
               ].map((item) => (
                 <li key={item.id}>
