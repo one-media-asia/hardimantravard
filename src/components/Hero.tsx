@@ -44,8 +44,8 @@ const Hero = () => {
               & <span className="text-primary">Trädvård</span>
             </h1>
             <p className="text-base md:text-lg text-muted-foreground max-w-md md:max-w-xl">
-              Vi erbjuder specialiserade träd- och skogsvårdstjänster med fokus på säkerhet, 
-              miljö och kvalitet. Certifierade arborister med över 20 års erfarenhet.
+             Hardimans Trädvård är ett professionellt arboristföretag som utför vård och underhåll av träd samt trädfällning över hela Sverige. 
+              Certifierade arborister med över 20 års erfarenhet.
             </p>
           </div>
           
