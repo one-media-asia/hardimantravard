@@ -29,7 +29,7 @@ const Logo: React.FC<LogoProps> = ({
 
   return (
     <div className={cn(
-      "flex items-center gap-2 font-serif font-semibold transition-all hover:opacity-80",
+      "flex items-center gap-2 font-serif font-semibold transition-all hover:opacity-80 border-2 border-primary/70 rounded-md px-3 py-2",
       className
     )}
     onClick={onClick}>
