@@ -39,12 +39,22 @@ const Logo: React.FC<LogoProps> = ({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
+        {/* Background circle for logo */}
+        <circle 
+          cx="50" 
+          cy="50" 
+          r="45" 
+          fill="white" 
+          stroke="#4B7F52"
+          strokeWidth="2"
+        />
+        
         {/* Tree Shape */}
         <path 
           d="M50 10 L65 40 L80 65 L65 65 L65 90 L35 90 L35 65 L20 65 L35 40 Z" 
           fill="#F97316" // Orange
           stroke="#4B7F52" // Green outline
-          strokeWidth="3" 
+          strokeWidth="4" 
         />
         
         {/* Leaf elements */}
@@ -57,13 +67,24 @@ const Logo: React.FC<LogoProps> = ({
           d="M46 35 Q50 25 54 35" 
           fill="none" 
           stroke="#FFFFFF" 
-          strokeWidth="2"
+          strokeWidth="2.5"
         />
         <path 
           d="M40 50 Q50 40 60 50" 
           fill="none" 
           stroke="#FFFFFF" 
-          strokeWidth="2"
+          strokeWidth="2.5"
+        />
+        
+        {/* Border ring */}
+        <circle 
+          cx="50" 
+          cy="50" 
+          r="48" 
+          fill="none" 
+          stroke="#4B7F52"
+          strokeWidth="1.5"
+          strokeDasharray="4 2"
         />
       </svg>
       
