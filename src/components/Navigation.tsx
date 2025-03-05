@@ -1,8 +1,8 @@
-
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
-import { Menu, X, TreeDeciduous } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Logo from './Logo';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -50,9 +50,8 @@ const Navigation = () => {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
       
-        <a href="#home" className="flex items-center gap-2 text-2xl font-serif font-semibold transition-all hover:opacity-80">
-          <TreeDeciduous className="h-7 w-7 text-primary" />
-          <span>Välkomna till Hardimans Trädvård</span>
+        <a href="#home" aria-label="Go to homepage">
+          <Logo />
         </a>
 
         {/* Desktop Navigation */}

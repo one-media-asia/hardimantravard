@@ -1,5 +1,5 @@
-
-import { ArrowUp, TreeDeciduous, Phone, Mail, MapPin } from "lucide-react";
+import { ArrowUp, Phone, Mail, MapPin } from "lucide-react";
+import Logo from './Logo';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -14,9 +14,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center border-b border-border/40 pb-8 mb-8">
           {/* Logo */}
           <div className="mb-6 md:mb-0">
-            <a href="#home" className="flex items-center gap-2 text-2xl font-serif font-semibold hover:opacity-80 transition-opacity">
-              <TreeDeciduous className="h-6 w-6 text-primary" />
-              <span>Hardimans Trädvård</span>
+            <a href="#home" aria-label="Go to homepage">
+              <Logo />
             </a>
           </div>
           
