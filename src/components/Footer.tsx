@@ -1,12 +1,21 @@
+
 import { ArrowUp, Phone, Mail, MapPin } from "lucide-react";
 import Logo from './Logo';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
   
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const navItems = [
+    {id: 'home', label: t('nav.home')},
+    {id: 'about', label: t('nav.services')}, 
+    {id: 'contact', label: t('nav.contact')}
+  ];
 
   return (
     <footer className="py-12 px-6 bg-secondary">
@@ -22,11 +31,7 @@ const Footer = () => {
           {/* Navigation */}
           <nav>
             <ul className="flex flex-wrap justify-center gap-8">
-              {[
-                {id: 'home', label: 'Hem'},
-                {id: 'about', label: 'Tjänster'}, 
-                {id: 'contact', label: 'Kontakt'}
-              ].map((item) => (
+              {navItems.map((item) => (
                 <li key={item.id}>
                   <a 
                     href={`#${item.id}`}
@@ -54,7 +59,7 @@ const Footer = () => {
           <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center gap-2 mb-3">
               <Phone className="h-5 w-5 text-primary" />
-              <h4 className="font-medium">Telefon</h4>
+              <h4 className="font-medium">{t('contact.phone')}</h4>
             </div>
             <a href="tel:+46733705058" className="text-muted-foreground hover:text-foreground transition-colors">
               073-370-5058
@@ -64,7 +69,7 @@ const Footer = () => {
           <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center gap-2 mb-3">
               <Mail className="h-5 w-5 text-primary" />
-              <h4 className="font-medium">E-post</h4>
+              <h4 className="font-medium">{t('contact.email')}</h4>
             </div>
             <a href="mailto:info@hardiman.se" className="text-muted-foreground hover:text-foreground transition-colors">
               info@hardiman.se
@@ -74,7 +79,7 @@ const Footer = () => {
           <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center gap-2 mb-3">
               <MapPin className="h-5 w-5 text-primary" />
-              <h4 className="font-medium">Plats</h4>
+              <h4 className="font-medium">{t('contact.location')}</h4>
             </div>
             <p className="text-muted-foreground">
               Göteborg, Malmö & hela Sverige
@@ -85,13 +90,13 @@ const Footer = () => {
         {/* Bottom section */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
           <div>
-            &copy; {currentYear} Hardiman.se. Alla rättigheter förbehållna.
+            &copy; {currentYear} Hardiman.se. {t('footer.rights')}
           </div>
           
           {/* Certifications */}
           <div className="flex gap-6 mt-4 md:mt-0">
-            <span className="text-muted-foreground/80">ISA Certified Arborist</span>
-            <span className="text-muted-foreground/80">Medlem i Svenska Trädföreningen</span>
+            <span className="text-muted-foreground/80">{t('footer.certified')}</span>
+            <span className="text-muted-foreground/80">{t('footer.member')}</span>
           </div>
         </div>
       </div>

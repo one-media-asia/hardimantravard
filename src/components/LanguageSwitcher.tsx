@@ -1,7 +1,7 @@
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type Language = {
   code: string;
@@ -27,11 +27,10 @@ type LanguageSwitcherProps = {
 };
 
 const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
-  const [currentLanguage, setCurrentLanguage] = useState<string>("sv");
+  const { language, setLanguage } = useLanguage();
 
   const handleLanguageChange = (langCode: string) => {
-    setCurrentLanguage(langCode);
-    // In a real app, you would update translations here
+    setLanguage(langCode);
     console.log(`Switched to language: ${langCode}`);
   };
 
@@ -44,7 +43,7 @@ const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
           size="icon"
           className={cn(
             "p-1 h-8 w-8 rounded-sm",
-            currentLanguage === lang.code
+            language === lang.code
               ? "bg-primary/10 text-primary"
               : "hover:bg-muted"
           )}

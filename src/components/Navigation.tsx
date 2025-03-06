@@ -5,10 +5,12 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Logo from './Logo';
 import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   // Handle scroll effect for navbar
   useEffect(() => {
@@ -43,6 +45,12 @@ const Navigation = () => {
     }
   };
 
+  const navItems = [
+    { id: 'home', label: t('nav.home') },
+    { id: 'about', label: t('nav.services') },
+    { id: 'contact', label: t('nav.contact') }
+  ];
+
   return (
     <header 
       className={cn(
@@ -63,11 +71,7 @@ const Navigation = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
           <ul className="flex items-center space-x-10">
-            {[
-              { id: 'home', label: 'Hem' },
-              { id: 'about', label: 'Tjänster' },
-              { id: 'contact', label: 'Kontakt' }
-            ].map((item) => (
+            {navItems.map((item) => (
               <li key={item.id}>
                 <button
                   onClick={() => handleLinkClick(item.id)}
@@ -102,11 +106,7 @@ const Navigation = () => {
       >
         <nav>
           <ul className="flex flex-col items-center space-y-8">
-            {[
-              { id: 'home', label: 'Hem' },
-              { id: 'about', label: 'Tjänster' },
-              { id: 'contact', label: 'Kontakt' }
-            ].map((item) => (
+            {navItems.map((item) => (
               <li key={item.id} className="w-full">
                 <button
                   onClick={() => handleLinkClick(item.id)}

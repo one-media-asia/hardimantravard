@@ -2,9 +2,11 @@
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, TreeDeciduous, TreePine, Trees } from "lucide-react";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const { t } = useLanguage();
   
   // Animate on load
   useEffect(() => {
@@ -37,15 +39,14 @@ const Hero = () => {
         <div className={`flex-1 space-y-8 transition-all duration-1000 delay-100 transform ${isLoaded ? 'opacity-100' : 'opacity-0 translate-y-12'}`}>
           <div>
             <h4 className="text-sm md:text-base text-primary uppercase tracking-widest mb-3 font-sans font-semibold">
-              Professionell Trädvård i Sverige
+              {t('hero.subtitle')}
             </h4>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold mb-4 leading-tight">
-              Expert <span className="text-primary">Trädkirurgi</span><br />
-              & <span className="text-primary">Trädvård</span>
+              {t('hero.title1')}<br />
+              & {t('hero.title2')}
             </h1>
             <p className="text-base md:text-lg text-muted-foreground max-w-md md:max-w-xl">
-             Hardimans Trädvård är ett professionellt arboristföretag som utför vård och underhåll av träd samt trädfällning över hela Sverige. 
-              Certifierade arborister med över 20 års erfarenhet.
+              {t('hero.description')}
             </p>
           </div>
           
@@ -54,14 +55,14 @@ const Hero = () => {
               onClick={() => scrollToSection('contact')}
               className="font-medium rounded-full px-7 py-6 text-base hover:translate-y-[-2px] transition-all"
             >
-              Kontakta Oss
+              {t('hero.cta1')}
             </Button>
             <Button 
               variant="outline" 
               onClick={() => scrollToSection('about')}
               className="font-medium rounded-full px-7 py-6 text-base hover:translate-y-[-2px] transition-all"
             >
-              Våra Tjänster
+              {t('hero.cta2')}
             </Button>
           </div>
         </div>

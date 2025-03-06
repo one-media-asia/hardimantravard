@@ -2,9 +2,11 @@
 import { useRef, useEffect } from 'react';
 import { Badge } from "@/components/ui/badge";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Contact = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
   
   // Animation on scroll
   useEffect(() => {
@@ -31,22 +33,28 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: <Mail className="h-6 w-6" />,
-      title: "E-post",
+      title: t('contact.email'),
       details: "info@hardiman.se",
       link: "mailto:info@hardiman.se"
     },
     {
       icon: <Phone className="h-6 w-6" />,
-      title: "Telefon",
+      title: t('contact.phone'),
       details: "073-370-5058",
       link: "tel:+46733705058"
     },
     {
       icon: <MapPin className="h-6 w-6" />,
-      title: "Plats",
+      title: t('contact.location'),
       details: "Göteborg, Sverige",
       link: "https://maps.google.com/?q=Göteborg,Sweden"
     }
+  ];
+
+  const hours = [
+    { day: t('contact.monday'), hours: "9:00 - 17:00" },
+    { day: t('contact.saturday'), hours: t('contact.byagreement') },
+    { day: t('contact.sunday'), hours: t('contact.closed') }
   ];
 
   return (
@@ -55,14 +63,13 @@ const Contact = () => {
         {/* Section header */}
         <div className="text-center mb-16 reveal">
           <Badge variant="outline" className="mb-4 font-medium px-4 py-1">
-            Kontakta Oss
+            {t('contact.badge')}
           </Badge>
           <h2 className="text-3xl md:text-5xl font-semibold mb-6">
-            Vill du veta mer?
+            {t('contact.title')}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Har du ett projekt i åtanke eller vill du veta mer om våra tjänster?
-            Vi ser fram emot att höra från dig.
+            {t('contact.description')}
           </p>
         </div>
         
@@ -87,20 +94,14 @@ const Contact = () => {
         
         {/* Working hours */}
         <div className="max-w-md mx-auto mt-16 p-6 bg-background rounded-2xl shadow-sm reveal">
-          <h3 className="font-semibold text-xl mb-4 text-center">Öppettider</h3>
+          <h3 className="font-semibold text-xl mb-4 text-center">{t('contact.hours')}</h3>
           <div className="space-y-3 text-muted-foreground">
-            <p className="flex justify-between">
-              <span>Måndag - Fredag</span>
-              <span>9:00 - 17:00</span>
-            </p>
-            <p className="flex justify-between">
-              <span>Lördag</span>
-              <span>Efter överenskommelse</span>
-            </p>
-            <p className="flex justify-between">
-              <span>Söndag</span>
-              <span>Stängt</span>
-            </p>
+            {hours.map((item, index) => (
+              <p key={index} className="flex justify-between">
+                <span>{item.day}</span>
+                <span>{item.hours}</span>
+              </p>
+            ))}
           </div>
         </div>
       </div>
