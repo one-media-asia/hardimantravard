@@ -90,7 +90,9 @@ const Footer = () => {
         {/* Bottom section */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
           <div>
-            &copy; {currentYear} Hardiman.se. {t('footer.rights')}
+            &copy; {currentYear} Hardiman.se. {t('footer.rights')},</n>
+
+            Powered By One Media Asia Co, Ltd | <www className="onemedia asia"></www>
           </div>
           
           {/* Certifications */}
