@@ -29,7 +29,7 @@ const Contact = () => {
     };
   }, []);
 
-  // Cntact info items
+  // Contact info items
   const contactInfo = [
     {
       icon: <Mail className="h-6 w-6" />,
@@ -45,9 +45,8 @@ const Contact = () => {
     },
     {
       icon: <MapPin className="h-6 w-6" />,
-      title: t('contact.location'),serviceområde,
-,
-      details: "Kungsbacka,Göteborg, Sverige",
+      title: t('contact.location'),
+      details: "Kungsbacka, Göteborg, Sverige",
       link: "https://maps.google.com/?q=Kungsbacka,Göteborg,Sweden"
     }
   ];
