@@ -90,7 +90,7 @@ const Footer = () => {
         {/* Bottom section */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
           <div>
-            &copy; {currentYear} Hardiman.se. {t('footer.rights')} <br>Powered by One Media Asia Co, Ltd
+            &copy; {currentYear} Hardiman.se. {t('footer.rights')} <br><br></br>Powered by One Media Asia Co, Ltd
           </div>
           
           {/* Certifications */}
