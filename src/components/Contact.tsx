@@ -29,7 +29,7 @@ const Contact = () => {
     };
   }, []);
 
-  // Contact info items
+  // Cntact info items
   const contactInfo = [
     {
       icon: <Mail className="h-6 w-6" />,
@@ -40,7 +40,7 @@ const Contact = () => {
     {
       icon: <Phone className="h-6 w-6" />,
       title: t('contact.phone'),
-      details: "073-370-5058",
+      details: "0733-705058",
       link: "tel:+46733705058"
     },
     {
