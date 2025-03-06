@@ -92,7 +92,7 @@ const Footer = () => {
           <div>
             &copy; {currentYear} Hardiman.se. {t('footer.rights')},</n>
 
-            Powered By One Media Asia Co, Ltd | <www className="onemedia asia"></www>
+           <p>Powered By One Media Asia Co, Ltd</p>| <www className="onemedia asia"></www>
           </div>
           
           {/* Certifications */}
