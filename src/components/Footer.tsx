@@ -62,7 +62,7 @@ const Footer = () => {
               <h4 className="font-medium">{t('contact.phone')}</h4>
             </div>
             <a href="tel:+46733705058" className="text-muted-foreground hover:text-foreground transition-colors">
-              073-370-5058
+              0733-705058
             </a>
           </div>
           
