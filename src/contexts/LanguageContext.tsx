@@ -64,7 +64,7 @@ const translations = {
     
     // Footer
     "footer.rights": "Alla rättigheter förbehållna.",
-    "footer.certified": "ISA Certified Arborist",
+    "footer.certified": "Certified Arborist",
     "footer.member": "Medlem i Svenska Trädföreningen",
   },
   en: {
@@ -122,7 +122,7 @@ const translations = {
     
     // Footer
     "footer.rights": "All rights reserved.",
-    "footer.certified": "ISA Certified Arborist",
+    "footer.certified": "Certified Arborist",
     "footer.member": "Member of the Swedish Tree Association",
   }
 };
