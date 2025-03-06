@@ -1,8 +1,10 @@
+
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Logo from './Logo';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,10 +51,14 @@ const Navigation = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-      
-        <a href="#home" aria-label="Go to homepage">
-          <Logo />
-        </a>
+        <div className="flex items-center">
+          <a href="#home" aria-label="Go to homepage">
+            <Logo />
+          </a>
+          
+          {/* Language Switcher - visible on both mobile and desktop */}
+          <LanguageSwitcher className="ml-4" />
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
