@@ -62,7 +62,7 @@ const Footer = () => {
               <h4 className="font-medium">{t('contact.phone')}</h4>
             </div>
             <a href="tel:+46733705058" className="text-muted-foreground hover:text-foreground transition-colors">
-              0733-705058
+              0733-05058
             </a>
           </div>
           
@@ -90,9 +90,7 @@ const Footer = () => {
         {/* Bottom section */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
           <div>
-            &copy; {currentYear} Hardiman.se. {t('footer.rights')},</br>
-
-           <p>Powered By One Media Asia Co, Ltd</p>| <a href="https://onemedi.asia">www.onemedia.asia</a>
+            &copy; {currentYear} Hardiman.se. {t('footer.rights')}
           </div>
           
           {/* Certifications */}
