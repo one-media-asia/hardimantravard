@@ -13,12 +13,12 @@ const languages: Language[] = [
   {
     code: "sv",
     name: "Svenska",
-    flag: "🇸🇪",
+    flag: "swedish",
   },
   {
     code: "en",
     name: "English",
-    flag: "Eng",
+    flag: "english",
   },
 ];
 
