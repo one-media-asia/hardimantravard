@@ -45,7 +45,8 @@ const Contact = () => {
     },
     {
       icon: <MapPin className="h-6 w-6" />,
-      title: t('contact.location'),
+      title: t('contact.location'),serviceområde,
+,
       details: "Kungsbacka,Göteborg, Sverige",
       link: "https://maps.google.com/?q=Kungsbacka,Göteborg,Sweden"
     }
