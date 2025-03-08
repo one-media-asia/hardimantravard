@@ -47,7 +47,7 @@ const Footer = () => {
           
           <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center gap-2 mb-3">
-              <h4 className="font-medium">{t('contact.social')}</h4>
+              <h4 className="font-medium">{t('Contact.Social')}</h4>
             </div>
             <div className="flex gap-4">
               <a href="https://facebook.com" className="text-muted-foreground hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
