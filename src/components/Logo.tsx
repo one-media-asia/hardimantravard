@@ -34,7 +34,7 @@ const Logo: React.FC<LogoProps> = ({
     )}
     onClick={onClick}>
       <img 
-        src="https://srv1416-files.hstgr.io/b7e820ad016831b3/files/public_html/hardiman-trans.png"
+        src="https://nikkiconnor.com/hardiman-trans.png"
         alt="Hardimans Trädvård Logo" 
         className={cn(sizeClasses[size], "text-primary")}
         style={{ filter: 'drop-shadow(0 0 0 #fff0) drop-shadow(0 0 0 #fff0)', WebkitFilter: 'drop-shadow(0 0 0 #fff0) drop-shadow(0 0 0 #fff0)', objectFit: 'contain' }}
