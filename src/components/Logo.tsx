@@ -16,9 +16,9 @@ const Logo: React.FC<LogoProps> = ({
   onClick
 }) => {
   const sizeClasses = {
-    sm: 'h-8 w-8',
-    md: 'h-10 w-10',
-    lg: 'h-14 w-14'
+    sm: 'h-10 w-10',
+    md: 'h-14 w-14',
+    lg: 'h-20 w-20'
   };
   
   const textSizeClasses = {
@@ -39,22 +39,22 @@ const Logo: React.FC<LogoProps> = ({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Outer circle */}
+        {/* Outer circle - transparent */}
         <circle 
           cx="250" 
           cy="250" 
           r="240" 
-          fill="white" 
+          fill="transparent" 
           stroke="#CCCCCC"
           strokeWidth="10"
         />
         
-        {/* Inner circle */}
+        {/* Inner circle - transparent */}
         <circle 
           cx="250" 
           cy="250" 
           r="200" 
-          fill="white" 
+          fill="transparent" 
           stroke="#CCCCCC"
           strokeWidth="6"
         />
@@ -102,11 +102,7 @@ const Logo: React.FC<LogoProps> = ({
         />
       </svg>
       
-      {withText && (
-        <span className={cn(textSizeClasses[size], "text-[#F97316]")}>
-          Hardimans Trädvård
-        </span>
-      )}
+      {/* Removed withText section to eliminate "Hardimans Trädvård" text */}
     </div>
   );
 };
