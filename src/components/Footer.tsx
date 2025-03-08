@@ -11,38 +11,38 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const navItems = [
-    {id: 'home', label: t('nav.home')},
-    {id: 'about', label: t('nav.services')}, 
-    {id: 'contact', label: t('nav.contact')}
-  ];
+  // const navItems = [
+  //   {id: 'home', label: t('nav.home')},
+  //   {id: 'about', label: t('nav.services')}, 
+  //   {id: 'contact', label: t('nav.contact')}
+  // ];
 
-  return (
-    <footer className="py-12 px-6 bg-secondary">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center border-b border-border/40 pb-8 mb-8">
-          {/* Logo */}
-          <div className="mb-6 md:mb-0">
-            <a href="#home" aria-label="Go to homepage">
-              <Logo />
-            </a>
-          </div>
+  // return (
+  //   <footer className="py-12 px-6 bg-secondary">
+  //     <div className="max-w-7xl mx-auto">
+  //       <div className="flex flex-col md:flex-row justify-between items-center border-b border-border/40 pb-8 mb-8">
+  //         {/* Logo */}
+  //         <div className="mb-6 md:mb-0">
+  //           <a href="#home" aria-label="Go to homepage">
+  //             <Logo />
+  //           </a>
+  //         </div>
           
-          {/* Navigation */}
-          <nav>
-            <ul className="flex flex-wrap justify-center gap-8">
-              {navItems.map((item) => (
-                <li key={item.id}>
-                  <a 
-                    href={`#${item.id}`}
-                    className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+  //         {/* Navigation */}
+  //         <nav>
+  //           <ul className="flex flex-wrap justify-center gap-8">
+  //             {navItems.map((item) => (
+  //               <li key={item.id}>
+  //                 <a 
+  //                   href={`#${item.id}`}
+  //                   className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+  //                 >
+  //                   {item.label}
+  //                 </a>
+  //               </li>
+  //             ))}
+  //           </ul>
+  //         </nav>
           
           {/* Back to top button */}
           <button 
