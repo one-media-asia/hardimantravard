@@ -50,10 +50,10 @@ const Footer = () => {
               <h4 className="font-medium">{t('Contact.Social')}</h4>
             </div>
             <div className="flex gap-4">
-              <a href="https://facebook.com" className="text-muted-foreground hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
+              <a href="https://facebook.com/hardimantrees" className="text-muted-foreground hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="https://instagram.com" className="text-muted-foreground hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
+              <a href="https://instagram.com/hardimantree" className="text-muted-foreground hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
                 <Instagram className="h-5 w-5" />
               </a>
             </div>
