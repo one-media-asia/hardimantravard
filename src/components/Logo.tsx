@@ -37,6 +37,7 @@ const Logo: React.FC<LogoProps> = ({
         src="/lovable-uploads/a60efe4e-be9e-4147-9723-67332744718b.png" 
         alt="Hardimans Trädvård Logo" 
         className={cn(sizeClasses[size], "text-primary")}
+        style={{ filter: 'drop-shadow(0 0 0 #fff0) drop-shadow(0 0 0 #fff0)', WebkitFilter: 'drop-shadow(0 0 0 #fff0) drop-shadow(0 0 0 #fff0)', objectFit: 'contain' }}
       />
       
       {/* Text has been removed as requested previously */}
