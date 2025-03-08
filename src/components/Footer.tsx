@@ -1,4 +1,4 @@
-import { ArrowUp, Phone, Mail, MapPin } from "lucide-react";
+import { ArrowUp, Phone, Mail, Facebook, Instagram } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
@@ -47,12 +47,16 @@ const Footer = () => {
           
           <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center gap-2 mb-3">
-              <MapPin className="h-5 w-5 text-primary" />
-              <h4 className="font-medium">{t('contact.location')}</h4>
+              <h4 className="font-medium">{t('contact.social')}</h4>
             </div>
-            <p className="text-muted-foreground">
-              Göteborg, Malmö & hela Sverige
-            </p>
+            <div className="flex gap-4">
+              <a href="https://facebook.com" className="text-muted-foreground hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a href="https://instagram.com" className="text-muted-foreground hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">
+                <Instagram className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
         
