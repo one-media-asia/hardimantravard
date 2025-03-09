@@ -1,4 +1,3 @@
-
 import { createContext, useState, useContext, ReactNode } from "react";
 
 type LanguageContextType = {
@@ -54,7 +53,7 @@ const translations = {
     "contact.description": "Har du ett projekt i åtanke eller vill du veta mer om våra tjänster? Vi ser fram emot att höra från dig.",
     "contact.email": "E-post",
     "contact.phone": "Telefon",
-    "contact.social": "Social Kontakt",
+    "contact.social": "Social",
     "contact.location": "Plats",
     "contact.hours": "Öppettider",
     "contact.monday": "Måndag - Fredag",
@@ -113,7 +112,7 @@ const translations = {
     "contact.description": "Do you have a project in mind or want to know more about our services? We look forward to hearing from you.",
     "contact.email": "Email",
     "contact.phone": "Phone",
-    "contact.social": "Social Contact",
+    "contact.social": "Social",
     "contact.location": "Location",
     "contact.hours": "Opening Hours",
     "contact.monday": "Monday - Friday",
