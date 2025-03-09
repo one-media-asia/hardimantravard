@@ -113,7 +113,7 @@ const translations = {
     "contact.description": "Do you have a project in mind or want to know more about our services? We look forward to hearing from you.",
     "contact.email": "Email",
     "contact.phone": "Phone",
-    "contact.social": " Social Contact",
+    "contact.social": "Social Contact",
     "contact.location": "Location",
     "contact.hours": "Opening Hours",
     "contact.monday": "Monday - Friday",
