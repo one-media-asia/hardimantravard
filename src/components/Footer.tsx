@@ -102,7 +102,11 @@ const Footer = () => {
         <MessageCircle className="h-6 w-6" />
       </a>
 
-     
+      {/* Elfsight AI Chatbot */}
+      <div 
+        className="elfsight-app-c8949169-8d56-4062-9122-851823b232aa" 
+        data-elfsight-app-lazy
+      ></div>
     </>
   );
 };
