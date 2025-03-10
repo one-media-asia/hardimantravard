@@ -77,15 +77,18 @@ const Footer = () => {
           </div>
           
           {/* Bottom section */}
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
-            <div>
-              &copy; {currentYear} Hardiman.se. {t('footer.rights')} <br/><br/><a href="https://onemedia.asia">Powered by www.OneMedia.asia</a>
+          <div className="flex flex-col items-center text-sm text-muted-foreground">
+            <div className="text-center">
+              &copy; {currentYear} Hardiman.se. {t('footer.rights')}
+            </div>
+            <div className="text-center mt-2">
+              <a href="https://onemedia.asia" className="hover:text-foreground transition-colors">Powered by www.OneMedia.asia</a>
             </div>
             
             {/* Certifications */}
-            <div className="flex gap-6 mt-4 md:mt-0">
+            <div className="flex gap-6 mt-4">
               <span className="text-muted-foreground/80">{t('footer.certified')}</span>
-              {/* <span className="text-muted-foreground/80">{t('footer.member')}</span> */}
+              <span className="text-muted-foreground/80">{t('footer.member')}</span>
             </div>
           </div>
         </div>
