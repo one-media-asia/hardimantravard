@@ -123,7 +123,7 @@ const translations = {
     
     // Footer
     "footer.rights": "All rights reserved.",
-    "footer.certified": "Certified Arborist",
+    "footer.certified": "Certified Arborists",
     "footer.member": "Hardimans Tree Care | Certified Arborists",
   }
 };
