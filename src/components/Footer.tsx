@@ -79,7 +79,7 @@ const whatsappNumber = "+46733705058";
           {/* Bottom section */}
           <div className="flex flex-col items-center text-sm text-muted-foreground">
             <div className="text-center">
-              &copy; {currentYear} Hardiman.se. {t('footer.rights')} •  </div>  <span className="text-muted-foreground/80">{t('footer.member')}</span>
+              &copy; {currentYear} Hardiman.se. {t('footer.rights')} •  <span className="text-muted-foreground/80">{t('footer.member')}</span> </div>  
             
             {/* Certifications */}
             <div className="flex gap-6 mt-4">
