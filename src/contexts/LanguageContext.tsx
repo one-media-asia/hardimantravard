@@ -104,7 +104,7 @@ const translations = {
     "stats.experience": "Years of Experience",
     "stats.projects": "Completed Projects",
     "stats.clients": "Happy Clients",
-    "stats.certified": "Certified Arborists",
+    "stats.certified": "Certified Arborist",
     
     // Contact section
     "contact.badge": "Contact Us",
@@ -124,7 +124,7 @@ const translations = {
     // Footer
     "footer.rights": "All rights reserved.",
     "footer.certified": "Certified Arborist",
-    "footer.member": "Hardiman Tree Care | Certified Arborists",
+    "footer.member": "Hardiman Tree Care | Certified Arborist",
   }
 };
 
