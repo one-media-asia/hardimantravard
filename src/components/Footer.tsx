@@ -28,7 +28,7 @@ const Footer = () => {
     <>
       <footer className="py-12 px-6 bg-secondary">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center border-b border-border/40 pb-8 mb-8">
+          <div className="flex flex-col items-center border-b border-border/40 pb-8 mb-8">
             {/* Back to top button */}
             <button 
               onClick={scrollToTop}
@@ -40,8 +40,8 @@ const Footer = () => {
           </div>
           
           {/* Contact info section */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center md:text-left">
-            <div className="flex flex-col items-center md:items-start">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center">
+            <div className="flex flex-col items-center">
               <div className="flex items-center gap-2 mb-3">
                 <Phone className="h-5 w-5 text-primary" />
                 <h4 className="font-medium">{t('contact.phone')}</h4>
@@ -51,7 +51,7 @@ const Footer = () => {
               </a>
             </div>
             
-            <div className="flex flex-col items-center md:items-start">
+            <div className="flex flex-col items-center">
               <div className="flex items-center gap-2 mb-3">
                 <Mail className="h-5 w-5 text-primary" />
                 <h4 className="font-medium">{t('contact.email')}</h4>
@@ -61,7 +61,7 @@ const Footer = () => {
               </a>
             </div>
             
-            <div className="flex flex-col items-center md:items-start">
+            <div className="flex flex-col items-center">
               <div className="flex items-center gap-2 mb-3">
                 <h4 className="font-medium">{t('contact.social')}</h4>
               </div>
