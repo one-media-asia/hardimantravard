@@ -79,12 +79,13 @@ const whatsappNumber = "+46733705058";
           {/* Bottom section */}
           <div className="flex flex-col items-center text-sm text-muted-foreground">
             <div className="text-center">
-              &copy; {currentYear} Hardiman.se. {t('footer.rights')} • <a href="https://onemedia.asia" className="hover:text-foreground transition-colors">Powered by www.OneMedia.asia</a>
-            </div>
+              &copy; {currentYear} Hardiman.se. {t('footer.rights')} •  </div>  <span className="text-muted-foreground/80">{t('footer.member')}</span>
             
             {/* Certifications */}
             <div className="flex gap-6 mt-4">
               {/* <span className="text-muted-foreground/80">{t('footer.certified')}</span> */}
+            ..  <a href="https://onemedia.asia" className="hover:text-foreground transition-colors">Powered by www.OneMedia.asia</a>
+           
               <span className="text-muted-foreground/80">{t('footer.member')}</span>
             </div> 
           </div>
