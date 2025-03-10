@@ -124,7 +124,7 @@ const translations = {
     // Footer
     "footer.rights": "All rights reserved.",
     "footer.certified": "Certified Arborist",
-    "footer.member": "Hardiman Travard | Certified Arborists",
+    "footer.member": "Hardiman Tree Care | Certified Arborists",
   }
 };
 
