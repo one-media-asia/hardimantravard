@@ -3,9 +3,9 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useEffect } from 'react';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  const { t } = useLanguage();
-  const whatsappNumber = "+46733705058";
+const currentYear = new Date().getFullYear();
+const { t } = useLanguage();
+const whatsappNumber = "+46733705058";
   
   useEffect(() => {
     // Load Elfsight script
@@ -47,7 +47,7 @@ const Footer = () => {
                 <h4 className="font-medium">{t('contact.phone')}</h4>
               </div>
               <a href="tel:+46733705058" className="text-muted-foreground hover:text-foreground transition-colors">
-                0733-05058
+                0733-705058
               </a>
             </div>
             
