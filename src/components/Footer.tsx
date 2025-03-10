@@ -86,10 +86,10 @@ const Footer = () => {
             </div>
             
             {/* Certifications */}
-            <div className="flex gap-6 mt-4">
+            {/* <div className="flex gap-6 mt-4">
               {/* <span className="text-muted-foreground/80">{t('footer.certified')}</span> */}
               {/* <span className="text-muted-foreground/80">{t('footer.member')}</span> */}
-            </div>
+            </div> */}
           </div>
         </div>
       </footer>
