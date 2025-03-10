@@ -65,7 +65,7 @@ const translations = {
     // Footer
     "footer.rights": "Alla rättigheter förbehållna.",
     "footer.certified": "Certified Arborist",
-    "footer.member": "Hardiman Trädvård | Certifierad Arborist i Sverige",
+    "footer.member": "Hardiman Trädvård | Certifierade Arborister i Sverige",
   },
   en: {
     // Navigation
