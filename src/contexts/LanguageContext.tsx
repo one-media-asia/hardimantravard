@@ -65,7 +65,7 @@ const translations = {
     // Footer
     "footer.rights": "Alla rättigheter förbehållna.",
     "footer.certified": "Certified Arborist",
-    "footer.member": "Hardiman Trädvård | Certifierade Arborister",
+    "footer.member": "Hardimans Trädvård | Certifierade Arborister",
   },
   en: {
     // Navigation
@@ -77,7 +77,7 @@ const translations = {
     "hero.subtitle": "Professional Tree Care in Sweden",
     "hero.title1": "Expert Tree Surgery",
     "hero.title2": "& Tree Care",
-    "hero.description": "Hardiman's Tree Care is a professional arborist company that performs tree care, maintenance, and tree removal throughout Sweden. Certified arborists with over 20 years of experience.",
+    "hero.description": "Hardimans Tree Care is a professional arborist company that performs tree care, maintenance, and tree removal throughout Sweden. Certified arborists with over 20 years of experience.",
     "hero.cta1": "Contact Us",
     "hero.cta2": "Our Services",
     
@@ -124,7 +124,7 @@ const translations = {
     // Footer
     "footer.rights": "All rights reserved.",
     "footer.certified": "Certified Arborist",
-    "footer.member": "Hardiman Tree Care | Certified Arborist",
+    "footer.member": "Hardimans Tree Care | Certified Arborist",
   }
 };
 
