@@ -10,11 +10,9 @@ import {
   ShieldCheck,
   Truck
 } from "lucide-react";
-import { useLanguage } from '@/contexts/LanguageContext';
 
 const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { t } = useLanguage();
   
   // Animation on scroll
   useEffect(() => {
@@ -41,41 +39,34 @@ const About = () => {
   const services = [
     {
       icon: <TreeDeciduous className="h-8 w-8 mb-4" />,
-      title: t('service.pruning'),
-      description: t('service.pruning.desc')
+      title: "Trädbeskärning",
+      description: "Professionell beskärning för att förbättra trädens hälsa, säkerhet och utseende."
     },
     {
       icon: <Axe className="h-8 w-8 mb-4" />,
-      title: t('service.felling'),
-      description: t('service.felling.desc')
+      title: "Trädfällning",
+      description: "Säker och kontrollerad fällning av träd i alla miljöer, även på begränsade ytor."
     },
     {
       icon: <Scissors className="h-8 w-8 mb-4" />,
-      title: t('service.shaping'),
-      description: t('service.shaping.desc')
+      title: "Trädformning",
+      description: "Specialiserad beskärning för att forma träd enligt specifika estetiska önskemål."
     },
     {
       icon: <ShieldCheck className="h-8 w-8 mb-4" />,
-      title: t('service.care'),
-      description: t('service.care.desc')
+      title: "Trädvård",
+      description: "Förebyggande vård och behandling av sjukdomar för att säkerställa trädens långsiktiga hälsa."
     },
     {
       icon: <Truck className="h-8 w-8 mb-4" />,
-      title: t('service.grinding'),
-      description: t('service.grinding.desc')
+      title: "Stubbfräsning",
+      description: "Effektiv borttagning av stubbar för att förbereda marken för ny plantering eller anläggning."
     },
     {
       icon: <Leaf className="h-8 w-8 mb-4" />,
-      title: t('service.consulting'),
-      description: t('service.consulting.desc')
+      title: "Rådgivning",
+      description: "Expertråd och konsultation för trädgårdsplanering och långsiktig trädvård."
     }
-  ];
-
-  const stats = [
-    { value: "20+", label: t('stats.experience') },
-    { value: "3500+", label: t('stats.projects') },
-    { value: "500+", label: t('stats.clients') },
-    { value: "100%", label: t('stats.certified') }
   ];
 
   return (
@@ -84,13 +75,14 @@ const About = () => {
         {/* Section header */}
         <div className="text-center mb-20 reveal">
           <Badge variant="outline" className="mb-4 font-medium px-4 py-1 text-primary">
-            {t('about.badge')}
+            Våra Tjänster
           </Badge>
           <h2 className="text-3xl md:text-5xl font-semibold mb-6">
-            {t('about.title')}
+            Professionell Trädvård för Alla Behov
           </h2>
-         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-           {t('about.description')}
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Vi erbjuder ett komplett utbud av tjänster inom trädfällning, beskärning 
+            och trädvård för bostäder, företag och kommuner i hela Sverige.
           </p>
         </div>
         
@@ -111,7 +103,12 @@ const About = () => {
         
         {/* Stats section */}
         <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 reveal">
-          {stats.map((stat, index) => (
+          {[
+            { value: "20+", label: "Års Erfarenhet" },
+            { value: "3500+", label: "Projekt Avslutade" },
+            { value: "500+", label: "Nöjda Kunder" },
+            { value: "100%", label: "Certifierade Arborister" }
+          ].map((stat, index) => (
             <div 
               key={index} 
               className="bg-background/50 backdrop-blur-sm rounded-2xl p-8 text-center border border-border/10"

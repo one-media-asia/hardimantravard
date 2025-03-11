@@ -2,11 +2,9 @@
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, TreeDeciduous, TreePine, Trees } from "lucide-react";
-import { useLanguage } from '@/contexts/LanguageContext';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const { t } = useLanguage();
   
   // Animate on load
   useEffect(() => {
@@ -39,14 +37,15 @@ const Hero = () => {
         <div className={`flex-1 space-y-8 transition-all duration-1000 delay-100 transform ${isLoaded ? 'opacity-100' : 'opacity-0 translate-y-12'}`}>
           <div>
             <h4 className="text-sm md:text-base text-primary uppercase tracking-widest mb-3 font-sans font-semibold">
-              {t('hero.subtitle')}
+              Professionell Trädvård i Sverige
             </h4>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold mb-4 leading-tight">
-              {t('hero.title1')}<br />
-              & {t('hero.title2')}
+              Expert <span className="text-primary">Trädkirurgi</span><br />
+              & <span className="text-primary">Trädvård</span>
             </h1>
             <p className="text-base md:text-lg text-muted-foreground max-w-md md:max-w-xl">
-              {t('hero.description')}
+              Vi erbjuder specialiserade träd- och skogsvårdstjänster med fokus på säkerhet, 
+              miljö och kvalitet. Certifierade arborister med över 20 års erfarenhet.
             </p>
           </div>
           
@@ -55,14 +54,14 @@ const Hero = () => {
               onClick={() => scrollToSection('contact')}
               className="font-medium rounded-full px-7 py-6 text-base hover:translate-y-[-2px] transition-all"
             >
-              {t('hero.cta1')}
+              Kontakta Oss
             </Button>
             <Button 
               variant="outline" 
               onClick={() => scrollToSection('about')}
               className="font-medium rounded-full px-7 py-6 text-base hover:translate-y-[-2px] transition-all"
             >
-              {t('hero.cta2')}
+              Våra Tjänster
             </Button>
           </div>
         </div>
