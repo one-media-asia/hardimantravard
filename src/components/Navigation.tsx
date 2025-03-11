@@ -1,14 +1,14 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { useTranslation } from "../contexts/LanguageContext";
+import { useLanguage } from "../contexts/LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
 import Logo from "./Logo";
-import useMobile from "../hooks/use-mobile";
+import { useIsMobile } from "../hooks/use-mobile";
 
 const Navigation = () => {
-  const { t } = useTranslation();
-  const isMobile = useMobile();
+  const { t } = useLanguage();
+  const isMobile = useIsMobile();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200">
@@ -29,7 +29,7 @@ const Navigation = () => {
               to="/"
               className="text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium"
             >
-              {t("home")}
+              {t("nav.home")}
             </Link>
             <Link
               to="/work"
@@ -41,7 +41,7 @@ const Navigation = () => {
               href="#about"
               className="text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium"
             >
-              {t("about")}
+              {t("nav.services")}
             </a>
             <a
               href="#portfolio"
@@ -53,7 +53,7 @@ const Navigation = () => {
               href="#contact"
               className="text-gray-500 hover:text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium"
             >
-              {t("contact")}
+              {t("nav.contact")}
             </a>
           </div>
           <div className="flex items-center">
