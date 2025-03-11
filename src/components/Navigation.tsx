@@ -6,11 +6,13 @@ import { Button } from "@/components/ui/button";
 import Logo from './Logo';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   // Handle scroll effect for navbar
   useEffect(() => {
@@ -34,21 +36,38 @@ const Navigation = () => {
     }
   };
 
-  // Handle link click (smooth scroll)
-  const handleLinkClick = (id: string) => {
+  // Handle link click
+  const handleLinkClick = (id: string, isPage?: boolean) => {
     setIsMobileMenuOpen(false);
     document.body.style.overflow = 'auto';
     
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (isPage) {
+      navigate(id);
+    } else {
+      // If we're not on the home page, navigate there first
+      if (window.location.pathname !== '/') {
+        navigate('/');
+        // Use setTimeout to wait for navigation to complete before scrolling
+        setTimeout(() => {
+          const element = document.getElementById(id);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      } else {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     }
   };
 
   const navItems = [
-    { id: 'home', label: t('nav.home') },
-    { id: 'about', label: t('nav.services') },
-    { id: 'contact', label: t('nav.contact') }
+    { id: 'home', label: t('nav.home'), isPage: false },
+    { id: 'about', label: t('nav.services'), isPage: false },
+    { id: '/work', label: t('nav.work'), isPage: true },
+    { id: 'contact', label: t('nav.contact'), isPage: false }
   ];
 
   return (
@@ -74,7 +93,7 @@ const Navigation = () => {
             {navItems.map((item) => (
               <li key={item.id}>
                 <button
-                  onClick={() => handleLinkClick(item.id)}
+                  onClick={() => handleLinkClick(item.id, item.isPage)}
                   className="font-medium text-foreground/80 hover:text-foreground transition-all relative group py-2"
                 >
                   {item.label}
@@ -109,7 +128,7 @@ const Navigation = () => {
             {navItems.map((item) => (
               <li key={item.id} className="w-full">
                 <button
-                  onClick={() => handleLinkClick(item.id)}
+                  onClick={() => handleLinkClick(item.id, item.isPage)}
                   className="font-medium text-xl w-full text-center py-3 hover:bg-secondary rounded-md transition-colors"
                 >
                   {item.label}
