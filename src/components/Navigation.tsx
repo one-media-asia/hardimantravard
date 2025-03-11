@@ -1,12 +1,16 @@
 
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
-import { Menu, X, TreeDeciduous } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Logo from './Logo';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   // Handle scroll effect for navbar
   useEffect(() => {
@@ -41,6 +45,12 @@ const Navigation = () => {
     }
   };
 
+  const navItems = [
+    { id: 'home', label: t('nav.home') },
+    { id: 'about', label: t('nav.services') },
+    { id: 'contact', label: t('nav.contact') }
+  ];
+
   return (
     <header 
       className={cn(
@@ -49,20 +59,19 @@ const Navigation = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Logo */}
-        <a href="#home" className="flex items-center gap-2 text-2xl font-serif font-semibold transition-all hover:opacity-80">
-          <TreeDeciduous className="h-7 w-7 text-primary" />
-          <span>TrädKirurgen</span>
-        </a>
+        <div className="flex items-center">
+          <a href="#home" aria-label="Go to homepage">
+            <Logo />
+          </a>
+          
+          {/* Language Switcher - visible on both mobile and desktop */}
+          <LanguageSwitcher className="ml-4" />
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
           <ul className="flex items-center space-x-10">
-            {[
-              { id: 'home', label: 'Hem' },
-              { id: 'about', label: 'Tjänster' },
-              { id: 'contact', label: 'Kontakt' }
-            ].map((item) => (
+            {navItems.map((item) => (
               <li key={item.id}>
                 <button
                   onClick={() => handleLinkClick(item.id)}
@@ -97,11 +106,7 @@ const Navigation = () => {
       >
         <nav>
           <ul className="flex flex-col items-center space-y-8">
-            {[
-              { id: 'home', label: 'Hem' },
-              { id: 'about', label: 'Tjänster' },
-              { id: 'contact', label: 'Kontakt' }
-            ].map((item) => (
+            {navItems.map((item) => (
               <li key={item.id} className="w-full">
                 <button
                   onClick={() => handleLinkClick(item.id)}
