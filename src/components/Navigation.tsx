@@ -66,7 +66,7 @@ const Navigation = () => {
   const navItems = [
     { id: 'home', label: t('nav.home'), isPage: false },
     { id: 'about', label: t('nav.services'), isPage: false },
-    { id: '/work', label: t('nav.work'), isPage: true },
+    // Removed the Work/Projects link
     { id: 'contact', label: t('nav.contact'), isPage: false }
   ];
 
