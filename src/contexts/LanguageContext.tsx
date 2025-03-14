@@ -14,7 +14,7 @@ const translations = {
     "nav.home": "Hem",
     "nav.services": "Tjänster",
     "nav.contact": "Kontakt",
-    "nav.work": "Projekts",
+    "nav.work": "Projekt",
     
     // Hero section
     "hero.subtitle": "Professionell Trädvård i Sverige",
@@ -72,7 +72,7 @@ const translations = {
     // Work page
     "work.title": "Våra Projekt",
     "work.subtitle": "Se exempel på vårt arbete och hur vi tar hand om träd i olika miljöer",
-    "work.project1.title": "Villa i Göteborg ",
+    "work.project1.title": "Villa i Stockholm",
     "work.project1.description": "Beskärning och formning av flera stora ekar för att förbättra ljusinsläpp och säkerhet.",
     "work.project2.title": "Kontorspark i Göteborg",
     "work.project2.description": "Borttagning av stormskadade träd och plantering av nya arter för framtida tillväxt.",
@@ -148,7 +148,7 @@ const translations = {
     // Work page
     "work.title": "Our Projects",
     "work.subtitle": "See examples of our work and how we care for trees in various environments",
-    "work.project1.title": "Residence in Göteborg",
+    "work.project1.title": "Residence in Stockholm",
     "work.project1.description": "Pruning and shaping of several large oak trees to improve light penetration and safety.",
     "work.project2.title": "Office Park in Gothenburg",
     "work.project2.description": "Removal of storm-damaged trees and planting of new species for future growth.",
