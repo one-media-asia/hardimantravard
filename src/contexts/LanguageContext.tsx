@@ -14,7 +14,7 @@ const translations = {
     "nav.home": "Hem",
     "nav.services": "Tjänster",
     "nav.contact": "Kontakt",
-    "nav.work": "Projekt",
+    "nav.work": "Projekts",
     
     // Hero section
     "hero.subtitle": "Professionell Trädvård i Sverige",
