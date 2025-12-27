@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { cn } from "@/lib/utils";
-
+import logoImage from "@/assets/hardiman-trans.png";
 type LogoProps = {
   className?: string;
   size?: 'sm' | 'md' | 'lg';
@@ -34,10 +33,9 @@ const Logo: React.FC<LogoProps> = ({
     )}
     onClick={onClick}>
       <img 
-        src="https://nikkiconnor.com/hardiman-trans.png"
+        src={logoImage}
         alt="Hardimans Trädvård" 
         className={cn(sizeClasses[size], "text-primary")}
-        style={{ filter: 'drop-shadow(0 0 0 #fff0) drop-shadow(0 0 0 #fff0)', WebkitFilter: 'drop-shadow(0 0 0 #fff0) drop-shadow(0 0 0 #fff0)', objectFit: 'contain' }}
       />
       
       {/* Text has been removed as requested previously */}
