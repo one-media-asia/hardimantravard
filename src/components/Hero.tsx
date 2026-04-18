@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { ArrowDown, TreeDeciduous, TreePine, Trees } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
 import heroBg from '@/assets/hero-tree-cutting.jpg';
-import treePruning from '@/assets/tree-pruning.jpg';
-import urbanPlanting from '@/assets/urban-planting.jpg';
+import treeCutting1 from '@/assets/hero-tree-cutting.jpg';
+import treeCutting2 from '@/assets/tree-removal.jpg';
+import treeCutting3 from '@/assets/forest-management.jpg';
+import treeCutting4 from '@/assets/tree-pruning.jpg';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -44,11 +46,11 @@ const Hero = () => {
             <h4 className="text-sm md:text-base text-primary uppercase tracking-widest mb-3 font-sans font-semibold">
               {t('hero.subtitle')}
             </h4>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold mb-4 leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold mb-4 leading-tight text-neutral-900">
               {t('hero.title1')}<br />
               & {t('hero.title2')}
             </h1>
-            <p className="text-base md:text-lg text-muted-foreground max-w-md md:max-w-xl">
+            <p className="text-base md:text-lg max-w-md md:max-w-xl text-neutral-900">
               {t('hero.description')}
             </p>
           </div>
@@ -77,16 +79,16 @@ const Hero = () => {
               <div className="w-full h-full bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl flex items-center justify-center p-6">
                 <div className="grid grid-cols-2 gap-6 w-full h-full">
                   <div className="bg-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
-                    <img src="/lovable-uploads/a46d0cb5-29c5-4a44-8ea4-dd45bfaa8323.png" alt="Tree Service 1" className="object-cover w-28 h-28 rounded-xl" />
+                    <img src={treeCutting1} alt="Tree Cutting 1" className="object-cover w-28 h-28 rounded-xl" />
                   </div>
                   <div className="bg-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
-                    <img src="/lovable-uploads/a60efe4e-be9e-4147-9723-67332744718b.png" alt="Tree Service 2" className="object-cover w-28 h-28 rounded-xl" />
+                    <img src={treeCutting2} alt="Tree Cutting 2" className="object-cover w-28 h-28 rounded-xl" />
                   </div>
                   <div className="bg-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
-                    <img src={treePruning} alt="Tree Pruning" className="object-cover w-28 h-28 rounded-xl" />
+                    <img src={treeCutting3} alt="Tree Cutting 3" className="object-cover w-28 h-28 rounded-xl" />
                   </div>
                   <div className="bg-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
-                    <img src={urbanPlanting} alt="Urban Planting" className="object-cover w-28 h-28 rounded-xl" />
+                    <img src={treeCutting4} alt="Tree Cutting 4" className="object-cover w-28 h-28 rounded-xl" />
                   </div>
                 </div>
               </div>
