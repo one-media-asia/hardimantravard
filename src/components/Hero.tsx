@@ -67,23 +67,23 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Hero image/visual */}
+        {/* Hero image/visual with real images */}
         <div className={`flex-1 transition-all duration-1000 delay-300 transform ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-lg'}`}>
           <div className="relative aspect-square max-w-md mx-auto">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-full h-full bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl flex items-center justify-center p-6">
                 <div className="grid grid-cols-2 gap-6 w-full h-full">
-                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center">
-                    <TreeDeciduous className="h-20 w-20 text-primary" />
+                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
+                    <img src="/lovable-uploads/a46d0cb5-29c5-4a44-8ea4-dd45bfaa8323.png" alt="Tree Service 1" className="object-cover w-28 h-28 rounded-xl" />
                   </div>
-                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center">
-                    <TreePine className="h-20 w-20 text-primary" />
+                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
+                    <img src="/lovable-uploads/a60efe4e-be9e-4147-9723-67332744718b.png" alt="Tree Service 2" className="object-cover w-28 h-28 rounded-xl" />
                   </div>
-                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center">
-                    <Trees className="h-20 w-20 text-primary" />
+                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
+                    <img src={require("@/assets/tree-pruning.jpg")} alt="Tree Pruning" className="object-cover w-28 h-28 rounded-xl" />
                   </div>
-                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center">
-                    <div className="text-primary font-serif font-bold text-4xl">20+</div>
+                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
+                    <img src={require("@/assets/urban-planting.jpg")} alt="Urban Planting" className="object-cover w-28 h-28 rounded-xl" />
                   </div>
                 </div>
               </div>
