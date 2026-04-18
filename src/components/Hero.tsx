@@ -25,7 +25,7 @@ const Hero = () => {
       id="home" 
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 px-6"
       style={{
-        backgroundImage: "linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2048&q=80')",
+        backgroundImage: "linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, rgba(20, 40, 25, 0.55) 70%, rgba(10, 25, 15, 0.75) 100%), url('https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2048&q=80')",
         backgroundSize: "cover",
         backgroundPosition: "center"
       }}
