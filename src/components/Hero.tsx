@@ -24,7 +24,12 @@ const Hero = () => {
   return (
     <section 
       id="home" 
-      className={`relative min-h-screen flex items-center justify-center overflow-hidden pt-16 px-6 ${styles['hero-bg']}`}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 px-6"
+      style={{
+        backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, rgba(20, 40, 25, 0.55) 70%, rgba(10, 25, 15, 0.75) 100%), url(${heroBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+      }}
     >
       {/* Background subtle pattern */}
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] pointer-events-none"></div>
