@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowDown, TreeDeciduous, TreePine, Trees } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
 import heroBg from '@/assets/hero-tree-cutting.jpg';
+import treePruning from '@/assets/tree-pruning.jpg';
+import urbanPlanting from '@/assets/urban-planting.jpg';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -81,10 +83,10 @@ const Hero = () => {
                     <img src="/lovable-uploads/a60efe4e-be9e-4147-9723-67332744718b.png" alt="Tree Service 2" className="object-cover w-28 h-28 rounded-xl" />
                   </div>
                   <div className="bg-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
-                    <img src={require("@/assets/tree-pruning.jpg")} alt="Tree Pruning" className="object-cover w-28 h-28 rounded-xl" />
+                    <img src={treePruning} alt="Tree Pruning" className="object-cover w-28 h-28 rounded-xl" />
                   </div>
                   <div className="bg-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
-                    <img src={require("@/assets/urban-planting.jpg")} alt="Urban Planting" className="object-cover w-28 h-28 rounded-xl" />
+                    <img src={urbanPlanting} alt="Urban Planting" className="object-cover w-28 h-28 rounded-xl" />
                   </div>
                 </div>
               </div>
