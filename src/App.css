@@ -1,3 +1,19 @@
+/* Hero section background gradient */
+.hero-section-bg {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, rgba(20, 40, 25, 0.55) 70%, rgba(10, 25, 15, 0.75) 100%);
+}
+
+/* Hero background image overlay */
+.hero-bg-image {
+  background-image: url('../src/pages/images/tree-workers.jpg');
+  opacity: 0.5;
+}
+
+/* Hero image size constraints */
+.hero-img-size {
+  max-height: 350px;
+  min-height: 250px;
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;

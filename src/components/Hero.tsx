@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, TreeDeciduous, TreePine, Trees } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
-import heroBg from '../pages/images/hero-urban-planting.jpg';
+import heroBg from '../pages/images/tree-workers.jpg';
 import treeCutting1 from '@/assets/hero-tree-cutting.jpg';
 import treeCutting2 from '@/assets/tree-removal.jpg';
 import treeCutting3 from '@/assets/forest-management.jpg';
@@ -28,13 +28,10 @@ const Hero = () => {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 px-6"
-      style={{
-        background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, rgba(20, 40, 25, 0.55) 70%, rgba(10, 25, 15, 0.75) 100%)`,
-      }}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 px-6 hero-section-bg"
     >
       {/* Background image with 50% opacity overlay */}
-      <div style={{backgroundImage: `url(${heroBg})`, opacity: 0.3}} className="absolute inset-0 bg-cover bg-center pointer-events-none z-0"></div>
+      <div className="absolute inset-0 bg-cover bg-center pointer-events-none z-0 hero-bg-image"></div>
       {/* Background subtle pattern */}
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] pointer-events-none"></div>
       
@@ -77,9 +74,8 @@ const Hero = () => {
           <div className="relative aspect-square max-w-md mx-auto flex items-center justify-center">
             <img 
               src={heroBg} 
-              alt="Tree Surgeon at Work" 
-              className="object-cover w-full h-full rounded-3xl shadow-2xl border-4 border-white/70" 
-              style={{ maxHeight: '350px', minHeight: '250px' }}
+              alt="Tree Surgeon at Work"
+              className="object-cover w-full h-full rounded-3xl shadow-2xl border-4 border-white/70 hero-img-size" 
             />
           </div>
         </div>
