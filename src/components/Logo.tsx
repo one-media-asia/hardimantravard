@@ -15,9 +15,9 @@ const Logo: React.FC<LogoProps> = ({
   onClick
 }) => {
   const sizeClasses = {
-    sm: 'h-16 sm:h-20 md:h-24 w-auto',
-    md: 'h-20 sm:h-28 md:h-32 lg:h-[136px] w-auto',
-    lg: 'h-24 sm:h-32 md:h-40 lg:h-[160px] w-auto'
+    sm: 'h-[136px] w-auto',
+    md: 'h-[136px] w-auto',
+    lg: 'h-[136px] w-auto'
   };
   
   const textSizeClasses = {
