@@ -3,6 +3,12 @@ import { useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import treePruning from '@/assets/tree-pruning.jpg';
+import treeRemoval from '@/assets/tree-removal.jpg';
+import treeHealth from '@/assets/tree-health.jpg';
+import forestManagement from '@/assets/forest-management.jpg';
+import heritageTree from '@/assets/heritage-tree.jpg';
+import urbanPlanting from '@/assets/urban-planting.jpg';
 
 const Work = () => {
   const { t } = useLanguage();
