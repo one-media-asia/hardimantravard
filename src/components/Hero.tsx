@@ -97,7 +97,7 @@ const Hero = () => {
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer animate-bounce"
         onClick={() => scrollToSection('about')}
       >
-        <ArrowDown className="h-6 w-6 text-primary" />
+        <ArrowDown className="h-6 w-6 text-white drop-shadow-lg" />
       </div>
     </section>
   );
