@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, TreeDeciduous, TreePine, Trees } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
-import heroBg from '@/assets/hero-tree-cutting.jpg';
+import heroBg from '../pages/images/hero-urban-planting.jpg';
 import treeCutting1 from '@/assets/hero-tree-cutting.jpg';
 import treeCutting2 from '@/assets/tree-removal.jpg';
 import treeCutting3 from '@/assets/forest-management.jpg';
@@ -30,11 +30,11 @@ const Hero = () => {
       id="home" 
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 px-6"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, rgba(20, 40, 25, 0.55) 70%, rgba(10, 25, 15, 0.75) 100%), url(${heroBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center"
+        background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, rgba(20, 40, 25, 0.55) 70%, rgba(10, 25, 15, 0.75) 100%)`,
       }}
     >
+      {/* Background image with 50% opacity overlay */}
+      <div style={{backgroundImage: `url(${heroBg})`, opacity: 0.3}} className="absolute inset-0 bg-cover bg-center pointer-events-none z-0"></div>
       {/* Background subtle pattern */}
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] pointer-events-none"></div>
       
@@ -72,27 +72,15 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Hero image/visual with real images */}
+        {/* Hero image/visual: single tree surgeon at work image */}
         <div className={`flex-1 transition-all duration-1000 delay-300 transform ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-lg'}`}>
-          <div className="relative aspect-square max-w-md mx-auto">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-full h-full bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl flex items-center justify-center p-6">
-                <div className="grid grid-cols-2 gap-6 w-full h-full">
-                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
-                    <img src={treeCutting1} alt="Tree Cutting 1" className="object-cover w-28 h-28 rounded-xl" />
-                  </div>
-                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
-                    <img src={treeCutting2} alt="Tree Cutting 2" className="object-cover w-28 h-28 rounded-xl" />
-                  </div>
-                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
-                    <img src={treeCutting3} alt="Tree Cutting 3" className="object-cover w-28 h-28 rounded-xl" />
-                  </div>
-                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center overflow-hidden">
-                    <img src={treeCutting4} alt="Tree Cutting 4" className="object-cover w-28 h-28 rounded-xl" />
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="relative aspect-square max-w-md mx-auto flex items-center justify-center">
+            <img 
+              src={heroBg} 
+              alt="Tree Surgeon at Work" 
+              className="object-cover w-full h-full rounded-3xl shadow-2xl border-4 border-white/70" 
+              style={{ maxHeight: '350px', minHeight: '250px' }}
+            />
           </div>
         </div>
       </div>

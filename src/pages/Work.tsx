@@ -3,12 +3,10 @@ import { useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import treePruning from '@/assets/tree-pruning.jpg';
-import treeRemoval from '@/assets/tree-removal.jpg';
-import treeHealth from '@/assets/tree-health.jpg';
-import forestManagement from '@/assets/forest-management.jpg';
-import heritageTree from '@/assets/heritage-tree.jpg';
-import urbanPlanting from '@/assets/urban-planting.jpg';
+import treePruning from './images/tree-pruning-jl4vFXWS.jpg';
+import treeRemoval from './images/tree-removal-BOV2ZXUh.jpg';
+import forestManagement from './images/forest-management-yKiYJIww.jpg';
+import urbanPlanting from './images/urban-planting-DRqUrj83.jpg';
 
 const Work = () => {
   const { t } = useLanguage();
@@ -44,9 +42,7 @@ const Work = () => {
   const treeImages = [
     treePruning,
     treeRemoval,
-    treeHealth,
     forestManagement,
-    heritageTree,
     urbanPlanting
   ];
 
