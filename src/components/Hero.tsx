@@ -46,7 +46,7 @@ const Hero = () => {
               {t('hero.title1')}<br />
               & {t('hero.title2')}
             </h1>
-            <p className="text-base md:text-lg text-muted-foreground max-w-md md:max-w-xl [text-shadow:_0_1px_4px_rgba(0,0,0,0.25)]">
+            <p className="text-base md:text-lg text-white/80 max-w-md md:max-w-xl [text-shadow:_0_1px_4px_rgba(0,0,0,0.5)]">
               {t('hero.description')}
             </p>
           </div>
