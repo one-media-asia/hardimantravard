@@ -5,7 +5,7 @@
 
 /* Hero background image overlay */
 .hero-bg-image {
-  background-image: url('./assets/hero-tree-cutting.jpg');
+  background-image: url('../src/pages/images/tree-workers.jpg');
   opacity: 0.5;
   z-index: 0;
 }

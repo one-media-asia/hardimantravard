@@ -1,8 +1,13 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, TreeDeciduous, TreePine, Trees } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
+import heroBg from '../pages/images/tree-workers.jpg';
+import treeCutting1 from '@/assets/hero-tree-cutting.jpg';
+import treeCutting2 from '@/assets/tree-removal.jpg';
+import treeCutting3 from '@/assets/forest-management.jpg';
+import treeCutting4 from '@/assets/tree-pruning.jpg';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
