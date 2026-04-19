@@ -42,11 +42,11 @@ const Hero = () => {
             <h4 className="text-sm md:text-base text-primary uppercase tracking-widest mb-3 font-sans font-semibold">
               {t('hero.subtitle')}
             </h4>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold mb-4 leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold mb-4 leading-tight [text-shadow:_0_2px_8px_rgba(0,0,0,0.35)]">
               {t('hero.title1')}<br />
               & {t('hero.title2')}
             </h1>
-            <p className="text-base md:text-lg text-muted-foreground max-w-md md:max-w-xl">
+            <p className="text-base md:text-lg text-muted-foreground max-w-md md:max-w-xl [text-shadow:_0_1px_4px_rgba(0,0,0,0.25)]">
               {t('hero.description')}
             </p>
           </div>
