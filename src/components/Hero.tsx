@@ -50,7 +50,6 @@ const Hero = () => {
               {t('hero.description')}
             </p>
           </div>
-          
           <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
             <Button 
               onClick={() => scrollToSection('contact')}
@@ -67,20 +66,20 @@ const Hero = () => {
             </Button>
           </div>
         </div>
-        
+
         {/* Hero image/visual */}
         <div className={`flex-1 transition-all duration-1000 delay-300 transform ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-lg'}`}>
           <div className="relative aspect-square max-w-md mx-auto">
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-full h-full bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl flex items-center justify-center p-6">
                 <div className="grid grid-cols-2 gap-6 w-full h-full">
-                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center">
+                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center opacity-30">
                     <TreeDeciduous className="h-20 w-20 text-primary" />
                   </div>
-                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center">
+                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center opacity-30">
                     <TreePine className="h-20 w-20 text-primary" />
                   </div>
-                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center">
+                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center opacity-30">
                     <Trees className="h-20 w-20 text-primary" />
                   </div>
                   <div className="bg-primary/10 rounded-2xl flex items-center justify-center">
