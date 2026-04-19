@@ -66,13 +66,15 @@ const Navigation = () => {
   const navItems = [
     { id: 'home', label: t('nav.home'), isPage: false },
     { id: 'about', label: t('nav.services'), isPage: false },
+    { id: '/work', label: t('nav.work'), isPage: true },
     { id: 'contact', label: t('nav.contact'), isPage: false }
   ];
 
   return (
     <header 
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out px-6 md:px-12 py-5 bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out px-6 md:px-12 py-5",
+        isScrolled ? "bg-background/90 backdrop-blur-md shadow-sm" : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
