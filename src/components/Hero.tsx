@@ -26,7 +26,7 @@ const Hero = () => {
       id="home" 
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 px-6"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 0%, rgba(20, 40, 25, 0.8) 70%, rgba(10, 25, 15, 0.9) 100%), url(${heroBg})`,
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.75) 60%, rgba(0, 0, 0, 0.9) 100%), url(${heroBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center"
       }}
@@ -42,11 +42,11 @@ const Hero = () => {
             <h4 className="text-sm md:text-base text-primary uppercase tracking-widest mb-3 font-sans font-semibold">
               {t('hero.subtitle')}
             </h4>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold mb-4 leading-tight [text-shadow:_0_2px_8px_rgba(0,0,0,0.35)]">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold mb-4 leading-tight text-white [text-shadow:_0_2px_8px_rgba(0,0,0,0.5)]">
               {t('hero.title1')}<br />
               & {t('hero.title2')}
             </h1>
-            <p className="text-base md:text-lg text-white/80 max-w-md md:max-w-xl [text-shadow:_0_1px_4px_rgba(0,0,0,0.5)]">
+            <p className="text-base md:text-lg text-white/90 max-w-md md:max-w-xl [text-shadow:_0_1px_4px_rgba(0,0,0,0.6)]">
               {t('hero.description')}
             </p>
           </div>
