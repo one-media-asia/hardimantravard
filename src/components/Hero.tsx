@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, TreeDeciduous, TreePine, Trees } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
-import heroBg from '@/assets/hero-tree-cutting.jpg';
+import heroBg from '@/assets/forest-management.jpg';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
