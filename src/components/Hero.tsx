@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, TreeDeciduous, TreePine, Trees } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
+import heroCutting from '@/assets/hero-tree-cutting.jpg';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -28,6 +29,14 @@ const Hero = () => {
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none" />
 
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className={`relative overflow-hidden rounded-[2.5rem] bg-slate-950/10 shadow-xl shadow-slate-900/10 transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-lg'}`}>
+          <img
+            src={heroCutting}
+            alt="Tree cutting service"
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+        </div>
         <div className={`space-y-8 text-center lg:text-left transition-all duration-1000 delay-100 transform ${isLoaded ? 'opacity-100' : 'opacity-0 translate-y-12'}`}>
           <div className="inline-flex items-center rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-sm font-medium text-emerald-700 shadow-sm backdrop-blur">
             <TreeDeciduous className="mr-2 h-4 w-4" />
