@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Redirecting…</title>
+    <script>
+      // Redirect unknown paths to the hash router while preserving the path
+      (function () {
+        try {
+          var path = location.pathname + location.search + location.hash;
+          // If we're already on a hash route, do nothing
+          if (location.hash && location.hash.indexOf('#/') === 0) return;
+          location.replace('/#' + path);
+        } catch (e) {
+          location.replace('/#' + location.pathname);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    Redirecting… If you are not redirected, <a id="link" href="/">go to the homepage</a>.
+  </body>
+</html>
