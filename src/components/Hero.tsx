@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, TreeDeciduous, TreePine, Trees } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
-import heroCutting from '@/assets/hero-tree-cutting.jpg';
+import heroBg from '@/assets/hero-tree-cutting.jpg';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const { t } = useLanguage();
-
+  
+  // Animate on load
   useEffect(() => {
     setIsLoaded(true);
   }, []);
@@ -21,96 +22,82 @@ const Hero = () => {
   };
 
   return (
-    <section
-      id="home"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-24 pt-20"
+    <section 
+      id="home" 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 px-6"
+      style={{
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.75) 60%, rgba(0, 0, 0, 0.9) 100%), url(${heroBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+      }}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.16),_transparent_38%),linear-gradient(135deg,_#f8faf8_0%,_#ffffff_55%,_#f0fdf4_100%)]" />
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none" />
-
-      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-        <div className={`relative overflow-hidden rounded-[2.5rem] bg-slate-950/10 shadow-xl shadow-slate-900/10 transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-lg'}`}>
-          <img
-            src={heroCutting}
-            alt="Tree cutting service"
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-        </div>
-        <div className={`space-y-8 text-center lg:text-left transition-all duration-1000 delay-100 transform ${isLoaded ? 'opacity-100' : 'opacity-0 translate-y-12'}`}>
-          <div className="inline-flex items-center rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-sm font-medium text-emerald-700 shadow-sm backdrop-blur">
-            <TreeDeciduous className="mr-2 h-4 w-4" />
-            {t('hero.subtitle')}
-          </div>
-
+      {/* Background subtle pattern */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] pointer-events-none"></div>
+      
+      {/* Content container */}
+      <div className="max-w-7xl mx-auto w-full text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-12 py-16">
+        {/* Hero text content */}
+        <div className={`flex-1 space-y-8 transition-all duration-1000 delay-100 transform ${isLoaded ? 'opacity-100' : 'opacity-0 translate-y-12'}`}>
           <div>
-            <h1 className="text-4xl font-semibold leading-tight text-foreground sm:text-5xl lg:text-6xl">
+            <h4 className="text-sm md:text-base text-primary uppercase tracking-widest mb-3 font-sans font-semibold">
+              {t('hero.subtitle')}
+            </h4>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold mb-4 leading-tight text-white [text-shadow:_0_2px_8px_rgba(0,0,0,0.5)]">
               {t('hero.title1')}<br />
-              <span className="text-primary">{t('hero.title2')}</span>
+              & {t('hero.title2')}
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground lg:mx-0">
+            <p className="text-base md:text-lg text-white/90 max-w-md md:max-w-xl [text-shadow:_0_1px_4px_rgba(0,0,0,0.6)]">
               {t('hero.description')}
             </p>
           </div>
-
-          <div className="flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
-            <Button
+          <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
+            <Button 
               onClick={() => scrollToSection('contact')}
-              className="rounded-full px-7 py-6 text-base font-medium transition-all hover:-translate-y-1"
+              className="font-medium rounded-full px-7 py-6 text-base hover:translate-y-[-2px] transition-all"
             >
               {t('hero.cta1')}
             </Button>
-            <Button
-              variant="outline"
+            <Button 
+              variant="outline" 
               onClick={() => scrollToSection('about')}
-              className="rounded-full px-7 py-6 text-base font-medium transition-all hover:-translate-y-1"
+              className="font-medium rounded-full px-7 py-6 text-base hover:translate-y-[-2px] transition-all"
             >
               {t('hero.cta2')}
             </Button>
           </div>
         </div>
 
-        <div className={`transition-all duration-1000 delay-300 transform ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-lg'}`}>
-          <div className="rounded-[2rem] border border-border/60 bg-white/90 p-6 shadow-[0_20px_80px_-25px_rgba(15,23,42,0.25)] backdrop-blur">
-            <div className="rounded-[1.5rem] bg-gradient-to-br from-emerald-50 to-white p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">Professionell service</p>
-                  <p className="text-xl font-semibold text-foreground">Trygg vård för träd och mark</p>
-                </div>
-                <div className="rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
-                  20+ år
-                </div>
-              </div>
-
-              <div className="mt-6 grid grid-cols-2 gap-4">
-                <div className="rounded-2xl border border-emerald-100 bg-white/80 p-4 text-center shadow-sm">
-                  <TreeDeciduous className="mx-auto mb-3 h-8 w-8 text-primary" />
-                  <p className="text-sm font-medium text-foreground">Besiktning</p>
-                </div>
-                <div className="rounded-2xl border border-emerald-100 bg-white/80 p-4 text-center shadow-sm">
-                  <TreePine className="mx-auto mb-3 h-8 w-8 text-primary" />
-                  <p className="text-sm font-medium text-foreground">Pruning</p>
-                </div>
-                <div className="rounded-2xl border border-emerald-100 bg-white/80 p-4 text-center shadow-sm">
-                  <Trees className="mx-auto mb-3 h-8 w-8 text-primary" />
-                  <p className="text-sm font-medium text-foreground">Skötsel</p>
-                </div>
-                <div className="rounded-2xl border border-emerald-100 bg-primary/10 p-4 text-center shadow-sm">
-                  <p className="text-3xl font-semibold text-primary">100%</p>
-                  <p className="mt-1 text-sm font-medium text-foreground">Ansvar</p>
+        {/* Hero image/visual */}
+        <div className={`flex-1 transition-all duration-1000 delay-300 transform ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-lg'}`}>
+          <div className="relative aspect-square max-w-md mx-auto">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-full h-full bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl flex items-center justify-center p-6">
+                <div className="grid grid-cols-2 gap-6 w-full h-full">
+                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center opacity-30">
+                    <TreeDeciduous className="h-20 w-20 text-primary" />
+                  </div>
+                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center opacity-30">
+                    <TreePine className="h-20 w-20 text-primary" />
+                  </div>
+                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center opacity-30">
+                    <Trees className="h-20 w-20 text-primary" />
+                  </div>
+                  <div className="bg-primary/10 rounded-2xl flex items-center justify-center">
+                    <div className="text-primary font-serif font-bold text-4xl">20+</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 cursor-pointer animate-bounce"
+      
+      {/* Scroll down indicator */}
+      <div 
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer animate-bounce"
         onClick={() => scrollToSection('about')}
       >
-        <ArrowDown className="h-6 w-6 text-foreground/70" />
+        <ArrowDown className="h-6 w-6 text-white drop-shadow-lg" />
       </div>
     </section>
   );
