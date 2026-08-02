@@ -15,8 +15,7 @@ const Index = () => {
     
     // Add grid pattern to the body
     document.body.classList.add('bg-grid-pattern');
-       <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
+
     // Intersection Observer for reveal animations
     const observer = new IntersectionObserver(
       (entries) => {

@@ -13,7 +13,7 @@ const translations = {
     // Navigation
     "nav.home": "Hem",
     "nav.services": "Tjänster",
-    "nav.contact": "Kontakt",
+    "nav.contact": "Kontakta oss",
     "nav.work": "Projekt",
     
     // Hero section
@@ -89,7 +89,7 @@ const translations = {
     // Navigation
     "nav.home": "Home",
     "nav.services": "Services",
-    "nav.contact": "Contact",
+    "nav.contact": "Contact Us",
     "nav.work": "Projects",
     
     // Hero section

@@ -93,32 +93,7 @@ const About = () => {
            {t('about.description')}
           </p>
         </div>
-        
-        {/* Services grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-          {services.map((service, index) => (
-            <div 
-              key={index}
-              className="bg-background rounded-2xl p-8 shadow-sm hover:shadow-md transition-all duration-300 reveal"
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              {service.icon}
-              <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-              <p className="text-muted-foreground">{service.description}</p>
-            </div>
-          ))}
-        </div>
 
-        <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DPTK8X8BS5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-DPTK8X8BS5');
-</script>
-        
         {/* Stats section */}
         <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 reveal">
           {stats.map((stat, index) => (
@@ -134,8 +109,6 @@ const About = () => {
       </div>
     </section>
   );
-};++
-
-  
+};
 
 export default About;
