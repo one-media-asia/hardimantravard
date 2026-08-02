@@ -7,6 +7,7 @@ import Logo from './Logo';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
+import { event } from '@/lib/analytics';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,6 +39,7 @@ const Navigation = () => {
 
   // Handle link click
   const handleLinkClick = (id: string, isPage?: boolean) => {
+    event('nav_link_click', { targetId: id, isPage: Boolean(isPage), label: id });
     setIsMobileMenuOpen(false);
     document.body.style.overflow = 'auto';
     

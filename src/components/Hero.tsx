@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, TreeDeciduous, TreePine, Trees } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
+import { event } from '@/lib/analytics';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -52,14 +53,20 @@ const Hero = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
             <Button 
-              onClick={() => scrollToSection('contact')}
+              onClick={() => {
+                event('hero_cta_click', { label: t('hero.cta1'), target: 'contact' });
+                scrollToSection('contact');
+              }}
               className="font-medium rounded-full px-7 py-6 text-base hover:translate-y-[-2px] transition-all"
             >
               {t('hero.cta1')}
             </Button>
             <Button 
               variant="outline" 
-              onClick={() => scrollToSection('about')}
+              onClick={() => {
+                event('hero_cta_click', { label: t('hero.cta2'), target: 'about' });
+                scrollToSection('about');
+              }}
               className="font-medium rounded-full px-7 py-6 text-base hover:translate-y-[-2px] transition-all"
             >
               {t('hero.cta2')}

@@ -3,6 +3,7 @@ import { useRef, useEffect } from 'react';
 import { Badge } from "@/components/ui/badge";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
+import { event } from '@/lib/analytics';
 
 const Contact = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -35,19 +36,22 @@ const Contact = () => {
       icon: <Mail className="h-6 w-6" />,
       title: t('contact.email'),
       details: "info@hardiman.se",
-      link: "mailto:info@hardiman.se"
+      link: "mailto:info@hardiman.se",
+      type: 'email'
     },
     {
       icon: <Phone className="h-6 w-6" />,
       title: t('contact.phone'),
       details: "0733-705058",
-      link: "tel:+46733705058"
+      link: "tel:+46733705058",
+      type: 'phone'
     },
     {
       icon: <MapPin className="h-6 w-6" />,
       title: t('contact.location'),
       details: "Kungsbacka, Göteborg, Sverige",
-      link: "https://maps.google.com/?q=Kungsbacka,Göteborg,Sweden"
+      link: "https://maps.google.com/?q=Kungsbacka,Göteborg,Sweden",
+      type: 'location'
     }
   ];
 
@@ -81,6 +85,7 @@ const Contact = () => {
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => event('contact_link_click', { linkType: item.type, label: item.title, url: item.link })}
               className="flex flex-col items-center text-center p-6 bg-background rounded-2xl shadow-sm hover:shadow-md transition-all"
             >
               <div className="p-4 mb-4 bg-primary/10 rounded-full text-primary">
