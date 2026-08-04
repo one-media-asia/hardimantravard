@@ -12,6 +12,7 @@ export type VisitorSession = {
   entrancePage: string;
   exitPage?: string;
   pagesVisited: string[];
+  location: string;
 };
 
 declare global {
@@ -87,6 +88,7 @@ export const trackVisitorPage = (path: string) => {
       entranceReferrer: referrer,
       entrancePage: path,
       pagesVisited: [path],
+      location: window.location.href,
     });
     return;
   }
@@ -99,6 +101,7 @@ export const trackVisitorPage = (path: string) => {
   saveCurrentSession({
     ...current,
     pagesVisited,
+    location: window.location.href,
   });
 };
 

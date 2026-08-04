@@ -103,8 +103,11 @@ const BookingForm = () => {
     }
 
     analyticsEvent('booking_form_submit', {
-      name: bookingName,
-      location: bookingLocation,
+      name: bookingName.trim(),
+      location: bookingLocation.trim(),
+      service: bookingService,
+      preferredDate: bookingDate,
+      deposit: bookingDeposit,
     });
 
     const subjectText = `${t('contact.booking.emailSubjectPrefix')} ${bookingName.trim()} - ${bookingDate}`;

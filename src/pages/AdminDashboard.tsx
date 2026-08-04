@@ -406,6 +406,7 @@ const AdminDashboard = () => {
                       <TableHead>{t('admin.visitor.column.referrer')}</TableHead>
                       <TableHead>{t('admin.visitor.column.pages')}</TableHead>
                       <TableHead>{t('admin.visitor.column.duration')}</TableHead>
+                      <TableHead>{t('admin.visitor.column.location')}</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -415,6 +416,7 @@ const AdminDashboard = () => {
                         <TableCell>{session.entranceReferrer || 'direct'}</TableCell>
                         <TableCell>{session.pagesVisited.join(' → ')}</TableCell>
                         <TableCell>{session.durationSeconds != null ? `${session.durationSeconds}s` : 'active'}</TableCell>
+                        <TableCell>{session.location || 'unknown'}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

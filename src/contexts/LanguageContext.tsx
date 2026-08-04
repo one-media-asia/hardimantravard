@@ -395,6 +395,7 @@ const translations = {
     "admin.visitor.column.referrer": "Referrer",
     "admin.visitor.column.pages": "Pages visited",
     "admin.visitor.column.duration": "Duration",
+    "admin.visitor.column.location": "Location",
     "admin.metric.sessions": "Sessions",
     "admin.metric.averageDuration": "Average duration",
     "admin.metric.topReferrer": "Top referrer",
