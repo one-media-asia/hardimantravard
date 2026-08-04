@@ -10,6 +10,8 @@ import { pageview, trackVisitorPage, endVisitorSession } from "@/lib/analytics";
 import Index from "./pages/Index";
 import Work from "./pages/Work";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminLogin from "./pages/AdminLogin";
+import ProtectedRoute from "./pages/ProtectedRoute";
 import PaymentOptions from "./pages/PaymentOptions";
 import Booking from "./pages/Booking";
 import NotFound from "./pages/NotFound";
@@ -56,7 +58,15 @@ const App = () => (
             <Route path="/payment/*" element={<PaymentOptions />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/booking/*" element={<Booking />} />
-            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

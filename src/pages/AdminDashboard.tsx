@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { clearAdminToken } from '@/lib/auth';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -249,6 +251,12 @@ const AdminDashboard = () => {
   const englishKeywords = trackedKeywords.filter((item) => item.language === 'EN').length;
   const swedishKeywords = trackedKeywords.filter((item) => item.language === 'SV').length;
   const activeKeywords = trackedKeywords.filter((item) => item.status === 'Active').length;
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    clearAdminToken();
+    navigate('/admin/login');
+  };
 
   // Keyword tracker helpers.
   // Add a new tracked keyword to the dashboard state and persist it locally.
@@ -315,14 +323,21 @@ const AdminDashboard = () => {
       <main className="pt-28 pb-20">
         <section className="container mx-auto px-4 md:px-6">
           <div className="rounded-3xl border border-border bg-card p-8 shadow-lg">
-            <div className="mb-8">
-              <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
-                {t('admin.badge')}
-              </span>
-              <h1 className="mt-4 text-3xl font-bold md:text-4xl">{t('admin.title')}</h1>
-              <p className="mt-3 max-w-3xl text-base text-muted-foreground md:text-lg">
-                {t('admin.subtitle')}
-              </p>
+            <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+              <div>
+                <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
+                  {t('admin.badge')}
+                </span>
+                <h1 className="mt-4 text-3xl font-bold md:text-4xl">{t('admin.title')}</h1>
+                <p className="mt-3 max-w-3xl text-base text-muted-foreground md:text-lg">
+                  {t('admin.subtitle')}
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                <Button variant="outline" onClick={handleLogout}>
+                  {t('admin.action.logout')}
+                </Button>
+              </div>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5 mb-10">
