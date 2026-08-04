@@ -12,6 +12,7 @@ import {
   TableCell,
   TableCaption,
 } from '@/components/ui/table';
+import { getVisitorSessions, type VisitorSession } from '@/lib/analytics';
 
 type TrackedKeyword = {
   phrase: string;
@@ -46,6 +47,49 @@ const AdminDashboard = () => {
   const [newVolume, setNewVolume] = useState('100');
   const [newTrend, setNewTrend] = useState<TrackedKeyword['trend']>('Up');
   const [newStatus, setNewStatus] = useState<TrackedKeyword['status']>('Active');
+  const [visitorSessions, setVisitorSessions] = useState<VisitorSession[]>([]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    setVisitorSessions(getVisitorSessions());
+  }, []);
+
+  const loadVisitorSessions = () => {
+    setVisitorSessions(getVisitorSessions());
+  };
+
+  const totalSessions = visitorSessions.length;
+  const averageSessionDuration = useMemo(() => {
+    if (!visitorSessions.length) return 0;
+    const totalSeconds = visitorSessions.reduce((sum, session) => sum + (session.durationSeconds ?? 0), 0);
+    return Math.round(totalSeconds / visitorSessions.length);
+  }, [visitorSessions]);
+
+  const formattedAverageDuration = useMemo(() => {
+    const minutes = Math.floor(averageSessionDuration / 60);
+    const seconds = averageSessionDuration % 60;
+    return `${minutes}m ${seconds}s`;
+  }, [averageSessionDuration]);
+
+  const topReferrer = useMemo(() => {
+    const counts = visitorSessions.reduce<Record<string, number>>((acc, session) => {
+      const ref = session.entranceReferrer || 'direct';
+      acc[ref] = (acc[ref] ?? 0) + 1;
+      return acc;
+    }, {});
+    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    return sorted.length ? `${sorted[0][0]} (${sorted[0][1]})` : '—';
+  }, [visitorSessions]);
+
+  const topExitPage = useMemo(() => {
+    const counts = visitorSessions.reduce<Record<string, number>>((acc, session) => {
+      const page = session.exitPage ?? session.pagesVisited[session.pagesVisited.length - 1] ?? session.entrancePage;
+      acc[page] = (acc[page] ?? 0) + 1;
+      return acc;
+    }, {});
+    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    return sorted.length ? `${sorted[0][0]} (${sorted[0][1]})` : '—';
+  }, [visitorSessions]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -136,6 +180,65 @@ const AdminDashboard = () => {
               <div className="rounded-3xl border border-border bg-background/50 p-6">
                 <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">{t('admin.metric.active')}</p>
                 <p className="mt-3 text-3xl font-semibold">{activeKeywords}</p>
+              </div>
+            </div>
+
+            <div className="rounded-3xl border border-border bg-background/50 p-6 mb-10">
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <h2 className="text-xl font-semibold">{t('admin.visitor.title')}</h2>
+                  <p className="mt-2 text-sm text-muted-foreground max-w-2xl">
+                    {t('admin.visitor.description')}
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Button onClick={loadVisitorSessions} className="w-full md:w-auto" variant="default">
+                    {t('admin.visitor.refresh')}
+                  </Button>
+                </div>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-6">
+                <div className="rounded-3xl border border-border bg-background/50 p-6">
+                  <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">{t('admin.metric.sessions')}</p>
+                  <p className="mt-3 text-3xl font-semibold">{totalSessions}</p>
+                </div>
+                <div className="rounded-3xl border border-border bg-background/50 p-6">
+                  <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">{t('admin.metric.averageDuration')}</p>
+                  <p className="mt-3 text-3xl font-semibold">{formattedAverageDuration}</p>
+                </div>
+                <div className="rounded-3xl border border-border bg-background/50 p-6">
+                  <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">{t('admin.metric.topReferrer')}</p>
+                  <p className="mt-3 text-3xl font-semibold">{topReferrer}</p>
+                </div>
+                <div className="rounded-3xl border border-border bg-background/50 p-6">
+                  <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">{t('admin.metric.topExitPage')}</p>
+                  <p className="mt-3 text-3xl font-semibold">{topExitPage}</p>
+                </div>
+              </div>
+
+              <div className="mt-6 overflow-hidden rounded-3xl border border-border bg-background/70">
+                <Table className="min-w-full">
+                  <TableCaption>{t('admin.visitor.table.caption')}</TableCaption>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>{t('admin.visitor.column.sessionId')}</TableHead>
+                      <TableHead>{t('admin.visitor.column.referrer')}</TableHead>
+                      <TableHead>{t('admin.visitor.column.pages')}</TableHead>
+                      <TableHead>{t('admin.visitor.column.duration')}</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {visitorSessions.slice(0, 8).map((session) => (
+                      <TableRow key={session.sessionId}>
+                        <TableCell className="font-medium">{session.sessionId.slice(0, 8)}</TableCell>
+                        <TableCell>{session.entranceReferrer || 'direct'}</TableCell>
+                        <TableCell>{session.pagesVisited.join(' → ')}</TableCell>
+                        <TableCell>{session.durationSeconds != null ? `${session.durationSeconds}s` : 'active'}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
               </div>
             </div>
 

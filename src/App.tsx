@@ -6,7 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import { pageview } from "@/lib/analytics";
+import { pageview, trackVisitorPage, endVisitorSession } from "@/lib/analytics";
 import Index from "./pages/Index";
 import Work from "./pages/Work";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -18,7 +18,20 @@ const Analytics = () => {
   const location = useLocation();
 
   useEffect(() => {
-    pageview(location.pathname + location.search, document.title);
+    const path = location.pathname + location.search;
+    pageview(path, document.title);
+    trackVisitorPage(path);
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        endVisitorSession();
+      }
+    };
+
+    window.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      window.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, [location]);
 
   return null;
