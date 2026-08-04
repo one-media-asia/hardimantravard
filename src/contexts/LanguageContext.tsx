@@ -379,6 +379,8 @@ const translations = {
     "admin.bookings.column.phone": "Telefon",
     "admin.bookings.column.date": "Datum",
     "admin.bookings.column.deposit": "Deposition",
+    "admin.bookings.column.notes": "Anteckningar",
+    "admin.bookings.notePlaceholder": "Skriv anteckningar...",
     "admin.bookings.column.actions": "Åtgärder",
     "admin.visitor.column.sessionId": "Session",
     "admin.visitor.column.referrer": "Hänvisare",
@@ -413,6 +415,8 @@ const translations = {
       "admin.bookings.column.phone": "Phone",
       "admin.bookings.column.date": "Date",
       "admin.bookings.column.deposit": "Deposit",
+      "admin.bookings.column.notes": "Notes",
+      "admin.bookings.notePlaceholder": "Add notes...",
       "admin.bookings.column.actions": "Actions",
   }
 };

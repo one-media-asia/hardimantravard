@@ -42,6 +42,7 @@ type TrackedKeyword = {
 };
 
 const STORAGE_KEY = 'hardiman-tracked-keywords';
+const BOOKING_NOTES_KEY = 'hardiman-booking-notes';
 
 const initialTrackedKeywords: TrackedKeyword[] = [
   { phrase: 'local certified arborist near me', sourceUrl: '/', language: 'EN', volume: 420, trend: 'Up', status: 'Active' },
@@ -69,6 +70,7 @@ const AdminDashboard = () => {
   const [editingKeyword, setEditingKeyword] = useState<TrackedKeyword | null>(null);
   const [visitorSessions, setVisitorSessions] = useState<VisitorSession[]>([]);
   const [bookings, setBookings] = useState<Booking[]>([]);
+  const [bookingNotes, setBookingNotes] = useState<Record<string, string>>({});
   const { toast } = useToast();
 
   useEffect(() => {
@@ -157,7 +159,11 @@ const AdminDashboard = () => {
         }
       }
       setBookings([]);
-      if (typeof window !== 'undefined') window.localStorage.removeItem('hardiman-bookings');
+      setBookingNotes({});
+      if (typeof window !== 'undefined') {
+        window.localStorage.removeItem('hardiman-bookings');
+        window.localStorage.removeItem(BOOKING_NOTES_KEY);
+      }
     })();
   };
 
@@ -214,6 +220,25 @@ const AdminDashboard = () => {
     if (typeof window === 'undefined') return;
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(trackedKeywords));
   }, [trackedKeywords]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const savedNotes = window.localStorage.getItem(BOOKING_NOTES_KEY);
+    if (!savedNotes) return;
+
+    try {
+      const parsed = JSON.parse(savedNotes) as Record<string, string>;
+      setBookingNotes(parsed);
+    } catch {
+      // ignore invalid saved notes
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.localStorage.setItem(BOOKING_NOTES_KEY, JSON.stringify(bookingNotes));
+  }, [bookingNotes]);
 
   const sourceCount = useMemo(
     () => new Set(trackedKeywords.map((item) => item.sourceUrl)).size,
@@ -275,6 +300,13 @@ const AdminDashboard = () => {
     if (editingKeywordIndex === index) {
       handleCancelEditKeyword();
     }
+  };
+
+  const handleBookingNoteChange = (bookingId: string, value: string) => {
+    setBookingNotes((current) => ({
+      ...current,
+      [bookingId]: value,
+    }));
   };
 
   return (
@@ -398,6 +430,7 @@ const AdminDashboard = () => {
                       <TableHead>{t('admin.bookings.column.phone')}</TableHead>
                       <TableHead>{t('admin.bookings.column.date')}</TableHead>
                       <TableHead>{t('admin.bookings.column.deposit')}</TableHead>
+                      <TableHead>{t('admin.bookings.column.notes')}</TableHead>
                       <TableHead>{t('admin.bookings.column.actions')}</TableHead>
                     </TableRow>
                   </TableHeader>
@@ -410,6 +443,15 @@ const AdminDashboard = () => {
                         <TableCell>{b.phone}</TableCell>
                         <TableCell>{b.preferredDate ?? '—'}</TableCell>
                         <TableCell>{b.deposit ? `${b.deposit} SEK` : '—'}</TableCell>
+                        <TableCell>
+                          <input
+                            type="text"
+                            value={bookingNotes[b.id] ?? ''}
+                            onChange={(event) => handleBookingNoteChange(b.id, event.target.value)}
+                            placeholder={t('admin.bookings.notePlaceholder')}
+                            className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none"
+                          />
+                        </TableCell>
                         <TableCell>
                           <div className="flex gap-2">
                             <Button onClick={() => navigator.clipboard?.writeText(JSON.stringify(b))} size="sm">Copy</Button>
