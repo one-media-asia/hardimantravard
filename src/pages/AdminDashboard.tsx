@@ -14,6 +14,19 @@ import {
 } from '@/components/ui/table';
 import { getVisitorSessions, type VisitorSession } from '@/lib/analytics';
 
+type Booking = {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  location?: string;
+  service?: string;
+  preferredDate?: string;
+  message?: string;
+  deposit?: string;
+  createdAt?: string;
+};
+
 type TrackedKeyword = {
   phrase: string;
   sourceUrl: string;
@@ -48,14 +61,43 @@ const AdminDashboard = () => {
   const [newTrend, setNewTrend] = useState<TrackedKeyword['trend']>('Up');
   const [newStatus, setNewStatus] = useState<TrackedKeyword['status']>('Active');
   const [visitorSessions, setVisitorSessions] = useState<VisitorSession[]>([]);
+  const [bookings, setBookings] = useState<Booking[]>([]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
     setVisitorSessions(getVisitorSessions());
+    // load bookings from localStorage
+    try {
+      const saved = window.localStorage.getItem('hardiman-bookings');
+      if (saved) setBookings(JSON.parse(saved));
+    } catch (e) {
+      setBookings([]);
+    }
   }, []);
 
   const loadVisitorSessions = () => {
     setVisitorSessions(getVisitorSessions());
+  };
+
+  const loadBookings = () => {
+    if (typeof window === 'undefined') return;
+    try {
+      const saved = window.localStorage.getItem('hardiman-bookings');
+      setBookings(saved ? JSON.parse(saved) : []);
+    } catch {
+      setBookings([]);
+    }
+  };
+
+  const deleteBooking = (id: string) => {
+    const updated = bookings.filter((b) => b.id !== id);
+    setBookings(updated);
+    if (typeof window !== 'undefined') window.localStorage.setItem('hardiman-bookings', JSON.stringify(updated));
+  };
+
+  const clearBookings = () => {
+    setBookings([]);
+    if (typeof window !== 'undefined') window.localStorage.removeItem('hardiman-bookings');
   };
 
   const totalSessions = visitorSessions.length;
@@ -235,6 +277,54 @@ const AdminDashboard = () => {
                         <TableCell>{session.entranceReferrer || 'direct'}</TableCell>
                         <TableCell>{session.pagesVisited.join(' → ')}</TableCell>
                         <TableCell>{session.durationSeconds != null ? `${session.durationSeconds}s` : 'active'}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+
+            <div className="rounded-3xl border border-border bg-background/50 p-6 mb-10">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-xl font-semibold">{t('admin.bookings.title')}</h2>
+                  <p className="mt-2 text-sm text-muted-foreground">{t('admin.bookings.description')}</p>
+                </div>
+                <div className="flex gap-2">
+                  <Button onClick={loadBookings} variant="default">{t('admin.bookings.refresh')}</Button>
+                  <Button onClick={clearBookings} variant="destructive">{t('admin.bookings.clear')}</Button>
+                </div>
+              </div>
+
+              <div className="mt-6 overflow-hidden rounded-3xl border border-border bg-background/70">
+                <Table className="min-w-full">
+                  <TableCaption>{t('admin.bookings.table.caption')}</TableCaption>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>{t('admin.bookings.column.id')}</TableHead>
+                      <TableHead>{t('admin.bookings.column.name')}</TableHead>
+                      <TableHead>{t('admin.bookings.column.email')}</TableHead>
+                      <TableHead>{t('admin.bookings.column.phone')}</TableHead>
+                      <TableHead>{t('admin.bookings.column.date')}</TableHead>
+                      <TableHead>{t('admin.bookings.column.deposit')}</TableHead>
+                      <TableHead>{t('admin.bookings.column.actions')}</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {bookings.slice(0, 50).map((b) => (
+                      <TableRow key={b.id}>
+                        <TableCell className="font-medium">{b.id.slice(0, 8)}</TableCell>
+                        <TableCell>{b.name}</TableCell>
+                        <TableCell>{b.email}</TableCell>
+                        <TableCell>{b.phone}</TableCell>
+                        <TableCell>{b.preferredDate ?? '—'}</TableCell>
+                        <TableCell>{b.deposit ? `${b.deposit} SEK` : '—'}</TableCell>
+                        <TableCell>
+                          <div className="flex gap-2">
+                            <Button onClick={() => navigator.clipboard?.writeText(JSON.stringify(b))} size="sm">Copy</Button>
+                            <Button onClick={() => deleteBooking(b.id)} variant="destructive" size="sm">Delete</Button>
+                          </div>
+                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
