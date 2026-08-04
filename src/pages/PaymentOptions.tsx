@@ -8,7 +8,7 @@ const PaymentOptions = () => {
   const { t } = useLanguage();
 
   useEffect(() => {
-    document.title = `Hardiman.se - ${t('payment.title')}`;
+    document.title = `Hardiman.se - ${t('pricing.title')}`;
     window.scrollTo(0, 0);
   }, [t]);
 
@@ -20,12 +20,44 @@ const PaymentOptions = () => {
           <div className="rounded-3xl border border-border bg-card p-8 shadow-lg">
             <div className="mb-10 text-center">
               <span className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
-                {t('payment.badge')}
+                {t('pricing.badge')}
               </span>
-              <h1 className="mt-4 text-3xl font-bold md:text-4xl">{t('payment.title')}</h1>
+              <h1 className="mt-4 text-3xl font-bold md:text-4xl">{t('pricing.title')}</h1>
               <p className="mt-3 max-w-3xl mx-auto text-base text-muted-foreground md:text-lg">
-                {t('payment.description')}
+                {t('pricing.description')}
               </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-8">
+              <div className="rounded-2xl border border-border bg-background/50 p-4 text-center">
+                <p className="text-sm text-muted-foreground">{t('pricing.example.small')}</p>
+                <p className="mt-2 text-2xl font-semibold">1 500 SEK</p>
+              </div>
+              <div className="rounded-2xl border border-border bg-background/50 p-4 text-center">
+                <p className="text-sm text-muted-foreground">{t('pricing.example.medium')}</p>
+                <p className="mt-2 text-2xl font-semibold">4 000 SEK</p>
+              </div>
+              <div className="rounded-2xl border border-border bg-background/50 p-4 text-center">
+                <p className="text-sm text-muted-foreground">{t('pricing.example.large')}</p>
+                <p className="mt-2 text-2xl font-semibold">10 000+ SEK</p>
+              </div>
+            </div>
+
+            <div className="mt-4 mb-6 text-sm text-muted-foreground">
+              {t('pricing.noteBeforePayments')}
+            </div>
+
+            <div className="mt-6 rounded-3xl border border-border bg-background/50 p-6">
+              <h2 className="text-xl font-semibold mb-3">{t('pricing.conditions.title')}</h2>
+              <p className="text-sm text-muted-foreground mb-4">
+                {t('pricing.conditions.description')}
+              </p>
+              <ul className="space-y-3 text-sm text-muted-foreground list-disc list-inside">
+                <li>{t('pricing.conditions.item1')}</li>
+                <li>{t('pricing.conditions.item2')}</li>
+                <li>{t('pricing.conditions.item3')}</li>
+                <li>{t('pricing.conditions.item4')}</li>
+              </ul>
             </div>
 
             <div className="grid gap-6 lg:grid-cols-3">

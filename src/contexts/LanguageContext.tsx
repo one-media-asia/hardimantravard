@@ -15,7 +15,7 @@ const translations = {
     "nav.services": "Tjänster",
     "nav.work": "Projekt",
     "nav.admin": "Admin",
-    "nav.payment": "Betalning",
+    "nav.pricing": "Priser",
     "nav.contact": "Kontakta oss",
     
     // Hero section
@@ -104,14 +104,6 @@ const translations = {
     "payment.paypal.accountLabel": "PayPal-länk",
     "payment.paypal.button": "Betala med PayPal",
     "payment.revolut.title": "Revolut",
-        // Pricing / Payment page
-        "pricing.badge": "Priser",
-        "pricing.title": "Priser & Deposition",
-        "pricing.description": "Priserna varierar beroende på projekt. När vi bekräftat en offert kan en deposition betalas med någon av alternativen nedan.",
-        "pricing.example.small": "Små jobb — startpris",
-        "pricing.example.medium": "Medelstora jobb — indikativt pris",
-        "pricing.example.large": "Större arbeten — från",
-        "pricing.noteBeforePayments": "Observera: slutligt pris bestäms efter offert. Depositionsalternativ finns nedan för att säkra din bokning.",
     "payment.revolut.description": "Använd Revolut för enkla mobila betalningar.",
     "payment.revolut.accountLabel": "Revolut-nummer",
     "payment.revolut.ownerLabel": "Kontoinnehavare",
@@ -122,16 +114,20 @@ const translations = {
     "payment.bank.bic": "BIC",
     "payment.noteTitle": "Observera",
     "payment.noteDescription": "Efter att du skickat depositionen, spara din betalningsbekräftelse och kontakta oss om du behöver ytterligare hjälp.",
-        
-      // Pricing / Payment page
-      "pricing.badge": "Pricing",
-      "pricing.title": "Prices & Deposit Options",
-      "pricing.description": "Pricing varies for each project. Once we confirm a quote you can pay a deposit using any of the options below.",
-      "pricing.example.small": "Small jobs — starting from",
-      "pricing.example.medium": "Medium jobs — indicative",
-      "pricing.example.large": "Larger jobs — from",
-      "pricing.noteBeforePayments": "Note: final price depends on the confirmed quote. Deposits can be paid using any of the methods below to secure your booking.",
-    
+    "pricing.badge": "Priser",
+    "pricing.title": "Priser & Deposition",
+    "pricing.description": "Priserna varierar beroende på projekt. När vi bekräftat en offert kan en deposition betalas med någon av alternativen nedan.",
+    "pricing.example.small": "Små jobb — startpris",
+    "pricing.example.medium": "Medelstora jobb — indikativt pris",
+    "pricing.example.large": "Större arbeten — från",
+    "pricing.noteBeforePayments": "Observera: slutligt pris bestäms efter offert. Depositionsalternativ finns nedan för att säkra din bokning.",
+    "pricing.conditions.title": "Prissättningsvillkor",
+    "pricing.conditions.description": "Alla priser baseras på den slutliga offert som bekräftas efter inspektion. Här är de viktigaste villkoren:",
+    "pricing.conditions.item1": "Offerten är indikativ och kan justeras efter platsbesök.",
+    "pricing.conditions.item2": "Depositionsbeloppet säkrar tiden och tas av från slutfakturan.",
+    "pricing.conditions.item3": "Eventuella ändringar efter offert kan påverka det slutliga priset.",
+    "pricing.conditions.item4": "Slutgiltig kostnad faktureras först när arbetet har bekräftats.",
+
     // Footer
     "footer.rights": "Alla rättigheter förbehållna.",
     "footer.certified": "Certified Arborist",
@@ -200,7 +196,7 @@ const translations = {
     "nav.work": "Projects",
     "nav.admin": "Admin",
     "nav.contact": "Contact Us",
-    "nav.payment": "Payment",
+    "nav.pricing": "Pricing",
     
     // Hero section
     "hero.subtitle": "Professional Tree Care in Sweden",
@@ -298,7 +294,20 @@ const translations = {
     "payment.bank.bic": "BIC",
     "payment.noteTitle": "Please note",
     "payment.noteDescription": "After sending the deposit, please keep your payment confirmation and contact us if you need any further assistance.",
-    
+    "pricing.badge": "Pricing",
+    "pricing.title": "Prices & Deposit Options",
+    "pricing.description": "Pricing varies for each project. Once we confirm a quote you can pay a deposit using any of the options below.",
+    "pricing.example.small": "Small jobs — starting from",
+    "pricing.example.medium": "Medium jobs — indicative",
+    "pricing.example.large": "Larger jobs — from",
+    "pricing.noteBeforePayments": "Note: final price depends on the confirmed quote. Deposits can be paid using any of the methods below to secure your booking.",
+    "pricing.conditions.title": "Pricing conditions",
+    "pricing.conditions.description": "All examples are indicative. Final pricing depends on the confirmed quote and the following conditions:",
+    "pricing.conditions.item1": "Quoted prices may be adjusted after an on-site assessment.",
+    "pricing.conditions.item2": "The deposit secures the booking and is deducted from the final invoice.",
+    "pricing.conditions.item3": "Changes after quote may affect the final price.",
+    "pricing.conditions.item4": "The final cost is settled only after work confirmation.",
+
     // Footer
     "footer.rights": "All rights reserved.",
     "footer.certified": "Certified Arborists",
