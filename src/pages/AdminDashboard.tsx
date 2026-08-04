@@ -99,10 +99,12 @@ const AdminDashboard = () => {
     })();
   }, []);
 
+  // Visitor analytics helpers.
   const loadVisitorSessions = () => {
     setVisitorSessions(getVisitorSessions());
   };
 
+  // Booking data helpers.
   const loadBookings = () => {
     // Refresh bookings manually from Supabase or local storage.
     (async () => {
@@ -223,6 +225,8 @@ const AdminDashboard = () => {
   const swedishKeywords = trackedKeywords.filter((item) => item.language === 'SV').length;
   const activeKeywords = trackedKeywords.filter((item) => item.status === 'Active').length;
 
+  // Keyword tracker helpers.
+  // Add a new tracked keyword to the dashboard state and persist it locally.
   const handleAddKeyword = () => {
     if (!newPhrase.trim() || !newSourceUrl.trim()) return;
 
@@ -506,6 +510,7 @@ const AdminDashboard = () => {
             <div className="overflow-hidden rounded-3xl border border-border bg-background/70">
               <Table className="min-w-full">
                 <TableCaption>{t('admin.table.caption')}</TableCaption>
+                {/* Keyword tracker table with inline edit controls */}
                 <TableHeader>
                   <TableRow>
                     <TableHead>{t('admin.column.keyword')}</TableHead>
