@@ -10,6 +10,7 @@ import { pageview, trackVisitorPage, endVisitorSession } from "@/lib/analytics";
 import Index from "./pages/Index";
 import Work from "./pages/Work";
 import AdminDashboard from "./pages/AdminDashboard";
+import PaymentOptions from "./pages/PaymentOptions";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -48,6 +49,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/work" element={<Work />} />
+            <Route path="/payment" element={<PaymentOptions />} />
             <Route path="/admin" element={<AdminDashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
