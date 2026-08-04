@@ -395,7 +395,7 @@ const translations = {
     "admin.visitor.column.referrer": "Referrer",
     "admin.visitor.column.pages": "Pages visited",
     "admin.visitor.column.duration": "Duration",
-    "admin.visitor.column.location": "Location",
+    "admin.visitor.column.ipLocation": "IP Location",
     "admin.metric.sessions": "Sessions",
     "admin.metric.averageDuration": "Average duration",
     "admin.metric.topReferrer": "Top referrer",
@@ -439,6 +439,12 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 
   // Translation function
   const t = (key: string): string => {
+    if (key.startsWith('admin.')) {
+      // Always render admin UI in English, even if the site language is Swedish.
+      // @ts-ignore - We know these keys exist in English.
+      return translations.en[key] || translations[language][key] || key;
+    }
+
     // @ts-ignore - We know these keys exist
     return translations[language][key] || key;
   };

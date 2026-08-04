@@ -12,7 +12,7 @@ export type VisitorSession = {
   entrancePage: string;
   exitPage?: string;
   pagesVisited: string[];
-  location: string;
+  ipLocation: string;
 };
 
 declare global {
@@ -55,6 +55,21 @@ const createSessionId = () => {
   return `visitor-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
 };
 
+const IP_GEO_API = 'https://ipapi.co/json/';
+
+const getIpLocation = async (): Promise<string> => {
+  if (typeof window === 'undefined') return 'unknown';
+  try {
+    const resp = await fetch(IP_GEO_API, { cache: 'reload' });
+    if (!resp.ok) throw new Error('Failed to fetch IP location');
+    const data = await resp.json();
+    const parts = [data.city, data.region, data.country_name].filter(Boolean);
+    return parts.join(', ') || data.country_name || 'unknown';
+  } catch {
+    return 'unknown';
+  }
+};
+
 export const getVisitorSessions = (): VisitorSession[] => {
   if (typeof window === 'undefined') return [];
   return safeJSONParse<VisitorSession[]>(window.localStorage.getItem(VISITOR_SESSIONS_KEY), []);
@@ -75,20 +90,21 @@ const saveCurrentSession = (session: VisitorSession) => {
   window.sessionStorage.setItem(VISITOR_SESSION_KEY, JSON.stringify(session));
 };
 
-export const trackVisitorPage = (path: string) => {
+export const trackVisitorPage = async (path: string) => {
   if (typeof window === 'undefined') return;
 
   const referrer = document.referrer || 'direct';
   const current = getCurrentSession();
 
   if (!current) {
+    const ipLocation = await getIpLocation();
     saveCurrentSession({
       sessionId: createSessionId(),
       startedAt: new Date().toISOString(),
       entranceReferrer: referrer,
       entrancePage: path,
       pagesVisited: [path],
-      location: window.location.href,
+      ipLocation,
     });
     return;
   }
@@ -98,11 +114,13 @@ export const trackVisitorPage = (path: string) => {
     pagesVisited.push(path);
   }
 
-  saveCurrentSession({
+  const updatedSession = {
     ...current,
     pagesVisited,
-    location: window.location.href,
-  });
+    ipLocation: current.ipLocation || (await getIpLocation()),
+  };
+
+  saveCurrentSession(updatedSession);
 };
 
 export const endVisitorSession = () => {
