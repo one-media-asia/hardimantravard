@@ -69,25 +69,27 @@ const AdminDashboard = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     setVisitorSessions(getVisitorSessions());
-    // load bookings from localStorage
-    try {
-      const hasSupabase = Boolean((import.meta.env as any).VITE_SUPABASE_URL && (import.meta.env as any).VITE_SUPABASE_PUBLISHABLE_KEY);
-      if (hasSupabase) {
-        const { data, error } = await supabase.from('bookings').select('*').order('createdAt', { ascending: false }).limit(200);
-        if (!error && Array.isArray(data)) {
-          setBookings(data as Booking[]);
+    // load bookings from localStorage or Supabase
+    (async () => {
+      try {
+        const hasSupabase = Boolean((import.meta.env as any).VITE_SUPABASE_URL && (import.meta.env as any).VITE_SUPABASE_PUBLISHABLE_KEY);
+        if (hasSupabase) {
+          const { data, error } = await supabase.from('bookings').select('*').order('createdAt', { ascending: false }).limit(200);
+          if (!error && Array.isArray(data)) {
+            setBookings(data as Booking[]);
+          } else {
+            const saved = window.localStorage.getItem('hardiman-bookings');
+            setBookings(saved ? JSON.parse(saved) : []);
+          }
         } else {
           const saved = window.localStorage.getItem('hardiman-bookings');
           setBookings(saved ? JSON.parse(saved) : []);
         }
-      } else {
+      } catch (e) {
         const saved = window.localStorage.getItem('hardiman-bookings');
         setBookings(saved ? JSON.parse(saved) : []);
       }
-    } catch (e) {
-      const saved = window.localStorage.getItem('hardiman-bookings');
-      setBookings(saved ? JSON.parse(saved) : []);
-    }
+    })();
   }, []);
 
   const loadVisitorSessions = () => {
