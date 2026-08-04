@@ -73,23 +73,32 @@ const BookingForm = () => {
       createdAt: new Date().toISOString(),
     };
 
-    // Try to persist to Supabase first; fallback to localStorage on error or if not configured
-    const hasSupabase = Boolean((import.meta.env as any).VITE_SUPABASE_URL && (import.meta.env as any).VITE_SUPABASE_PUBLISHABLE_KEY);
-    if (hasSupabase) {
-      try {
-        const { error } = await supabase.from('bookings').insert([booking]);
-        if (error) throw error;
-      } catch (err) {
-        // fallback to localStorage
+    // First, try server-side secured endpoint (recommended)
+    try {
+      const resp = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(booking),
+      });
+      if (!resp.ok) throw new Error('server-endpoint-failed');
+    } catch (err) {
+      // If server endpoint fails, fall back to direct Supabase client or localStorage
+      const hasSupabase = Boolean((import.meta.env as any).VITE_SUPABASE_URL && (import.meta.env as any).VITE_SUPABASE_PUBLISHABLE_KEY);
+      if (hasSupabase) {
+        try {
+          const { error } = await supabase.from('bookings').insert([booking]);
+          if (error) throw error;
+        } catch (e) {
+          if (typeof window !== 'undefined') {
+            const existing = JSON.parse(window.localStorage.getItem('hardiman-bookings') || '[]');
+            window.localStorage.setItem('hardiman-bookings', JSON.stringify([booking, ...existing].slice(0, 50)));
+          }
+        }
+      } else {
         if (typeof window !== 'undefined') {
           const existing = JSON.parse(window.localStorage.getItem('hardiman-bookings') || '[]');
           window.localStorage.setItem('hardiman-bookings', JSON.stringify([booking, ...existing].slice(0, 50)));
         }
-      }
-    } else {
-      if (typeof window !== 'undefined') {
-        const existing = JSON.parse(window.localStorage.getItem('hardiman-bookings') || '[]');
-        window.localStorage.setItem('hardiman-bookings', JSON.stringify([booking, ...existing].slice(0, 50)));
       }
     }
 
