@@ -47,6 +47,12 @@ const PaymentOptions = () => {
               {t('pricing.noteBeforePayments')}
             </div>
 
+            <div className="text-center mb-8">
+              <a href="/booking">
+                <Button size="lg">{t('pricing.bookNow')}</Button>
+              </a>
+            </div>
+
             <div className="mt-6 rounded-3xl border border-border bg-background/50 p-6">
               <h2 className="text-xl font-semibold mb-3">{t('pricing.conditions.title')}</h2>
               <p className="text-sm text-muted-foreground mb-4">

@@ -15,7 +15,7 @@ const translations = {
     "nav.services": "Tjänster",
     "nav.work": "Projekt",
     "nav.admin": "Admin",
-    "nav.pricing": "Priser",
+    "nav.pricing": "Priser & Bokning",
     "nav.contact": "Kontakta oss",
     
     // Hero section
@@ -121,6 +121,7 @@ const translations = {
     "pricing.example.medium": "Medelstora jobb — indikativt pris",
     "pricing.example.large": "Större arbeten — från",
     "pricing.noteBeforePayments": "Observera: slutligt pris bestäms efter offert. Depositionsalternativ finns nedan för att säkra din bokning.",
+    "pricing.bookNow": "Boka nu",
     "pricing.conditions.title": "Prissättningsvillkor",
     "pricing.conditions.description": "Alla priser baseras på den slutliga offert som bekräftas efter inspektion. Här är de viktigaste villkoren:",
     "pricing.conditions.item1": "Offerten är indikativ och kan justeras efter platsbesök.",
@@ -196,7 +197,7 @@ const translations = {
     "nav.work": "Projects",
     "nav.admin": "Admin",
     "nav.contact": "Contact Us",
-    "nav.pricing": "Pricing",
+    "nav.pricing": "Pricing & Booking",
     
     // Hero section
     "hero.subtitle": "Professional Tree Care in Sweden",
@@ -301,6 +302,7 @@ const translations = {
     "pricing.example.medium": "Medium jobs — indicative",
     "pricing.example.large": "Larger jobs — from",
     "pricing.noteBeforePayments": "Note: final price depends on the confirmed quote. Deposits can be paid using any of the methods below to secure your booking.",
+    "pricing.bookNow": "Book now",
     "pricing.conditions.title": "Pricing conditions",
     "pricing.conditions.description": "All examples are indicative. Final pricing depends on the confirmed quote and the following conditions:",
     "pricing.conditions.item1": "Quoted prices may be adjusted after an on-site assessment.",
