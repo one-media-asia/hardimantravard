@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
 import { Mail, MapPin, Phone } from "lucide-react";
 import { useLanguage } from '@/contexts/LanguageContext';
-import { event } from '@/lib/analytics';
+import { event as analyticsEvent } from '@/lib/analytics';
 
 const Contact = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -82,8 +82,8 @@ const Contact = () => {
     "Other"
   ];
 
-  const handleBookingSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleBookingSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
     if (!bookingName.trim() || !bookingEmail.trim() || !bookingPhone.trim() || !bookingDate.trim()) {
       toast({
@@ -111,39 +111,88 @@ const Contact = () => {
       window.localStorage.setItem('hardiman-bookings', JSON.stringify([booking, ...existing].slice(0, 50)));
     }
 
-    event('booking_form_submit', {
+    analyticsEvent('booking_form_submit', {
       name: bookingName,
       location: bookingLocation,
     });
 
-    // Open user's email client with prefilled booking details to send to info@hardiman.se
-    try {
-      const subject = encodeURIComponent(
-        `${t('contact.booking.emailSubjectPrefix')} ${bookingName.trim()} - ${bookingDate}`,
-      );
-      const bodyLines = [
-        `${t('contact.booking.emailBodyLabel')}: ${bookingName.trim()}`,
-        `${t('contact.booking.emailBodyEmail')}: ${bookingEmail.trim()}`,
-        `${t('contact.booking.emailBodyPhone')}: ${bookingPhone.trim()}`,
-        `${t('contact.booking.emailBodyLocation')}: ${bookingLocation.trim()}`,
-        `${t('contact.booking.emailBodyService')}: ${bookingService}`,
-        `${t('contact.booking.emailBodyDate')}: ${bookingDate}`,
-        `${t('contact.booking.emailBodyDeposit')}: ${bookingDeposit} SEK`,
-        '',
-        `${t('contact.booking.emailBodyMessage')}:`,
-        bookingMessage.trim(),
-      ];
-      const body = encodeURIComponent(bodyLines.join('\n'));
-      const mailto = `mailto:info@hardiman.se?subject=${subject}&body=${body}`;
-      window.location.href = mailto;
-    } catch (e) {
-      // ignore mailto errors
-    }
+    // Prepare email/body
+    const subjectText = `${t('contact.booking.emailSubjectPrefix')} ${bookingName.trim()} - ${bookingDate}`;
+    const bodyLines = [
+      `${t('contact.booking.emailBodyLabel')}: ${bookingName.trim()}`,
+      `${t('contact.booking.emailBodyEmail')}: ${bookingEmail.trim()}`,
+      `${t('contact.booking.emailBodyPhone')}: ${bookingPhone.trim()}`,
+      `${t('contact.booking.emailBodyLocation')}: ${bookingLocation.trim()}`,
+      `${t('contact.booking.emailBodyService')}: ${bookingService}`,
+      `${t('contact.booking.emailBodyDate')}: ${bookingDate}`,
+      `${t('contact.booking.emailBodyDeposit')}: ${bookingDeposit} SEK`,
+      '',
+      `${t('contact.booking.emailBodyMessage')}:`,
+      bookingMessage.trim(),
+    ];
 
-    toast({
-      title: t('contact.booking.successTitle'),
-      description: t('contact.booking.successDescription'),
-    });
+    const web3formsKey = (import.meta.env as any).VITE_WEB3FORMS_ACCESS_KEY as string | undefined;
+
+    if (web3formsKey) {
+      try {
+        const resp = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: web3formsKey,
+            subject: subjectText,
+            name: bookingName.trim(),
+            email: bookingEmail.trim(),
+            message: bodyLines.join('\n'),
+            data: {
+              phone: bookingPhone.trim(),
+              location: bookingLocation.trim(),
+              service: bookingService,
+              date: bookingDate,
+              deposit: bookingDeposit,
+            },
+          }),
+        });
+        const json = await resp.json();
+        if (json.success) {
+          toast({
+            title: t('contact.booking.successTitle'),
+            description: t('contact.booking.successDescription'),
+          });
+        } else {
+          throw new Error(json.message || 'web3forms_error');
+        }
+      } catch (err) {
+        toast({
+          title: t('contact.booking.web3formsErrorTitle'),
+          description: t('contact.booking.web3formsErrorDescription'),
+          variant: 'destructive',
+        });
+        // fallback to mailto so user can still send
+        try {
+          const subject = encodeURIComponent(subjectText);
+          const body = encodeURIComponent(bodyLines.join('\n'));
+          const mailto = `mailto:info@hardiman.se?subject=${subject}&body=${body}`;
+          window.location.href = mailto;
+        } catch (e) {
+          // ignore
+        }
+      }
+    } else {
+      // No Web3Forms key configured — fallback to mailto
+      try {
+        const subject = encodeURIComponent(subjectText);
+        const body = encodeURIComponent(bodyLines.join('\n'));
+        const mailto = `mailto:info@hardiman.se?subject=${subject}&body=${body}`;
+        window.location.href = mailto;
+      } catch (e) {
+        // ignore
+      }
+      toast({
+        title: t('contact.booking.successTitle'),
+        description: t('contact.booking.successDescription'),
+      });
+    }
 
     setBookingName('');
     setBookingEmail('');
@@ -178,7 +227,7 @@ const Contact = () => {
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => event('contact_link_click', { linkType: item.type, label: item.title, url: item.link })}
+              onClick={() => analyticsEvent('contact_link_click', { linkType: item.type, label: item.title, url: item.link })}
               className="flex flex-col items-center text-center p-6 bg-background rounded-2xl shadow-sm hover:shadow-md transition-all"
             >
               <div className="p-4 mb-4 bg-primary/10 rounded-full text-primary">
