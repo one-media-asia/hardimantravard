@@ -1,17 +1,33 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import { createClient } from '@supabase/supabase-js';
+import { createPool, Pool } from 'mysql2/promise';
 
-const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
-const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_SERVICE_ROLE_KEY;
+const MYSQL_HOST = process.env.MYSQL_HOST;
+const MYSQL_PORT = process.env.MYSQL_PORT ? Number(process.env.MYSQL_PORT) : 3306;
+const MYSQL_USER = process.env.MYSQL_USER;
+const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD;
+const MYSQL_DATABASE = process.env.MYSQL_DATABASE;
+
+function getPool(): Pool {
+  if ((global as any).__MYSQL_POOL) return (global as any).__MYSQL_POOL;
+  const pool = createPool({
+    host: MYSQL_HOST,
+    port: MYSQL_PORT,
+    user: MYSQL_USER,
+    password: MYSQL_PASSWORD,
+    database: MYSQL_DATABASE,
+    waitForConnections: true,
+    connectionLimit: 5,
+  });
+  (global as any).__MYSQL_POOL = pool;
+  return pool;
+}
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') return res.status(405).send({ error: 'Method not allowed' });
 
-  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
-    return res.status(500).send({ error: 'Supabase not configured on server' });
+  if (!MYSQL_HOST || !MYSQL_USER || !MYSQL_PASSWORD || !MYSQL_DATABASE) {
+    return res.status(500).send({ error: 'MySQL not configured on server' });
   }
-
-  const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY as string);
 
   try {
     const payload = req.body;
@@ -19,28 +35,28 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).send({ error: 'Missing required fields' });
     }
 
-    const insert = {
-      id: payload.id,
-      name: payload.name,
-      email: payload.email,
-      phone: payload.phone || null,
-      location: payload.location || null,
-      service: payload.service || null,
-      preferredDate: payload.preferredDate || null,
-      message: payload.message || null,
-      deposit: payload.deposit ? Number(payload.deposit) : null,
-      createdAt: payload.createdAt || new Date().toISOString(),
-    };
+    const values = [
+      payload.id || null,
+      payload.name,
+      payload.email,
+      payload.phone || null,
+      payload.location || null,
+      payload.service || null,
+      payload.preferredDate || null,
+      payload.message || null,
+      payload.deposit ? Number(payload.deposit) : null,
+      payload.createdAt || new Date().toISOString(),
+    ];
 
-    const { error } = await supabase.from('bookings').insert([insert]);
-    if (error) {
-      console.error('Supabase insert error', error);
-      return res.status(500).send({ error: 'Failed to save booking' });
-    }
+    const sql = `INSERT INTO bookings (id, name, email, phone, location, service, preferredDate, message, deposit, createdAt)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+    const pool = getPool();
+    await pool.execute(sql, values);
 
     return res.status(200).send({ success: true });
   } catch (err) {
-    console.error(err);
+    console.error('MySQL insert error', err);
     return res.status(500).send({ error: 'Server error' });
   }
 }
