@@ -416,7 +416,7 @@ const AdminDashboard = () => {
                         <TableCell>{session.entranceReferrer || 'direct'}</TableCell>
                         <TableCell>{session.pagesVisited.join(' → ')}</TableCell>
                         <TableCell>{session.durationSeconds != null ? `${session.durationSeconds}s` : 'active'}</TableCell>
-                        <TableCell>{session.ipLocation || 'unknown'}</TableCell>
+                        <TableCell>{session.ipLocation || session.location || 'unknown'}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

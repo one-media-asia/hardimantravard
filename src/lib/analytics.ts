@@ -57,18 +57,46 @@ const createSessionId = () => {
 };
 
 const IP_GEO_API = 'https://ipapi.co/json/';
+const IPWHO_API = 'https://ipwho.is/';
 
 const getIpLocation = async (): Promise<string> => {
   if (typeof window === 'undefined') return 'unknown';
-  try {
-    const resp = await fetch(IP_GEO_API, { cache: 'reload' });
-    if (!resp.ok) throw new Error('Failed to fetch IP location');
-    const data = await resp.json();
+
+  const fallbackLocation = () => {
+    const host = window.location.hostname;
+    if (host && host !== 'localhost' && host !== '127.0.0.1' && host !== '::1') {
+      return host;
+    }
+    return window.navigator.language || 'unknown';
+  };
+
+  const parseIpApiResponse = (data: any): string => {
     const parts = [data.city, data.region, data.country_name].filter(Boolean);
     return parts.join(', ') || data.country_name || 'unknown';
+  };
+
+  try {
+    const resp = await fetch(IP_GEO_API, { cache: 'reload' });
+    if (resp.ok) {
+      const data = await resp.json();
+      return parseIpApiResponse(data);
+    }
   } catch {
-    return 'unknown';
+    // ignore and try fallback
   }
+
+  try {
+    const resp = await fetch(IPWHO_API, { cache: 'reload' });
+    if (resp.ok) {
+      const data = await resp.json();
+      const parts = [data.city, data.region, data.country].filter(Boolean);
+      return parts.join(', ') || data.country || fallbackLocation();
+    }
+  } catch {
+    // ignore fallback failures
+  }
+
+  return fallbackLocation();
 };
 
 export const getVisitorSessions = (): VisitorSession[] => {
