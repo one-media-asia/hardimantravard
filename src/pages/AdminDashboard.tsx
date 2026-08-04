@@ -16,6 +16,9 @@ import {
 } from '@/components/ui/table';
 import { getVisitorSessions, type VisitorSession } from '@/lib/analytics';
 
+// Admin dashboard provides a simple analytics and booking review interface.
+// It combines local storage and Supabase-backed booking storage with visitor session metrics.
+
 type Booking = {
   id: string;
   name: string;
@@ -62,6 +65,8 @@ const AdminDashboard = () => {
   const [newVolume, setNewVolume] = useState('100');
   const [newTrend, setNewTrend] = useState<TrackedKeyword['trend']>('Up');
   const [newStatus, setNewStatus] = useState<TrackedKeyword['status']>('Active');
+  const [editingKeywordIndex, setEditingKeywordIndex] = useState<number | null>(null);
+  const [editingKeyword, setEditingKeyword] = useState<TrackedKeyword | null>(null);
   const [visitorSessions, setVisitorSessions] = useState<VisitorSession[]>([]);
   const [bookings, setBookings] = useState<Booking[]>([]);
   const { toast } = useToast();
@@ -69,7 +74,9 @@ const AdminDashboard = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     setVisitorSessions(getVisitorSessions());
-    // load bookings from localStorage or Supabase
+
+    // Load booking records on initial page visit.
+    // Prefer Supabase when configured, otherwise fall back to local storage.
     (async () => {
       try {
         const hasSupabase = Boolean((import.meta.env as any).VITE_SUPABASE_URL && (import.meta.env as any).VITE_SUPABASE_PUBLISHABLE_KEY);
@@ -97,6 +104,7 @@ const AdminDashboard = () => {
   };
 
   const loadBookings = () => {
+    // Refresh bookings manually from Supabase or local storage.
     (async () => {
       if (typeof window === 'undefined') return;
       try {
@@ -121,6 +129,7 @@ const AdminDashboard = () => {
   };
 
   const deleteBooking = (id: string) => {
+    // Remove a booking entry both from Supabase (if available) and local state.
     (async () => {
       const hasSupabase = Boolean((import.meta.env as any).VITE_SUPABASE_URL && (import.meta.env as any).VITE_SUPABASE_PUBLISHABLE_KEY);
       if (hasSupabase) {
@@ -136,6 +145,7 @@ const AdminDashboard = () => {
   };
 
   const clearBookings = () => {
+    // Delete all booking entries for cleanup or reset.
     (async () => {
       const hasSupabase = Boolean((import.meta.env as any).VITE_SUPABASE_URL && (import.meta.env as any).VITE_SUPABASE_PUBLISHABLE_KEY);
       if (hasSupabase) {
@@ -233,6 +243,34 @@ const AdminDashboard = () => {
     setNewVolume('100');
     setNewTrend('Up');
     setNewStatus('Active');
+  };
+
+  const handleEditKeyword = (index: number) => {
+    setEditingKeywordIndex(index);
+    setEditingKeyword(trackedKeywords[index]);
+  };
+
+  const handleSaveKeyword = (index: number) => {
+    if (!editingKeyword) return;
+
+    setTrackedKeywords((current) =>
+      current.map((item, idx) => (idx === index ? editingKeyword : item)),
+    );
+
+    setEditingKeywordIndex(null);
+    setEditingKeyword(null);
+  };
+
+  const handleCancelEditKeyword = () => {
+    setEditingKeywordIndex(null);
+    setEditingKeyword(null);
+  };
+
+  const handleDeleteKeyword = (index: number) => {
+    setTrackedKeywords((current) => current.filter((_, idx) => idx !== index));
+    if (editingKeywordIndex === index) {
+      handleCancelEditKeyword();
+    }
   };
 
   return (
@@ -476,17 +514,91 @@ const AdminDashboard = () => {
                     <TableHead>{t('admin.column.volume')}</TableHead>
                     <TableHead>{t('admin.column.trend')}</TableHead>
                     <TableHead>{t('admin.column.status')}</TableHead>
+                    <TableHead>{t('admin.column.actions')}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {trackedKeywords.map((keyword) => (
+                  {trackedKeywords.map((keyword, index) => (
                     <TableRow key={`${keyword.phrase}-${keyword.sourceUrl}-${keyword.volume}`}>
-                      <TableCell className="font-medium">{keyword.phrase}</TableCell>
-                      <TableCell>{keyword.sourceUrl}</TableCell>
-                      <TableCell>{keyword.language}</TableCell>
-                      <TableCell>{keyword.volume.toLocaleString()}</TableCell>
-                      <TableCell>{keyword.trend}</TableCell>
-                      <TableCell>{keyword.status}</TableCell>
+                      {editingKeywordIndex === index && editingKeyword ? (
+                        <>
+                          <TableCell>
+                            <input
+                              value={editingKeyword.phrase}
+                              onChange={(event) => setEditingKeyword({ ...editingKeyword, phrase: event.target.value })}
+                              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none"
+                            />
+                          </TableCell>
+                          <TableCell>
+                            <input
+                              value={editingKeyword.sourceUrl}
+                              onChange={(event) => setEditingKeyword({ ...editingKeyword, sourceUrl: event.target.value })}
+                              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none"
+                            />
+                          </TableCell>
+                          <TableCell>
+                            <select
+                              value={editingKeyword.language}
+                              onChange={(event) => setEditingKeyword({ ...editingKeyword, language: event.target.value as TrackedKeyword['language'] })}
+                              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none"
+                            >
+                              <option value="EN">EN</option>
+                              <option value="SV">SV</option>
+                            </select>
+                          </TableCell>
+                          <TableCell>
+                            <input
+                              type="number"
+                              value={editingKeyword.volume}
+                              onChange={(event) => setEditingKeyword({ ...editingKeyword, volume: Number(event.target.value) || 0 })}
+                              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none"
+                            />
+                          </TableCell>
+                          <TableCell>
+                            <select
+                              value={editingKeyword.trend}
+                              onChange={(event) => setEditingKeyword({ ...editingKeyword, trend: event.target.value as TrackedKeyword['trend'] })}
+                              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none"
+                            >
+                              <option value="Up">Up</option>
+                              <option value="Steady">Steady</option>
+                              <option value="Down">Down</option>
+                            </select>
+                          </TableCell>
+                          <TableCell>
+                            <select
+                              value={editingKeyword.status}
+                              onChange={(event) => setEditingKeyword({ ...editingKeyword, status: event.target.value as TrackedKeyword['status'] })}
+                              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground outline-none"
+                            >
+                              <option value="Active">Active</option>
+                              <option value="Monitoring">Monitoring</option>
+                              <option value="Review">Review</option>
+                            </select>
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex gap-2">
+                              <Button size="sm" onClick={() => handleSaveKeyword(index)}>{t('admin.action.save')}</Button>
+                              <Button size="sm" variant="secondary" onClick={handleCancelEditKeyword}>{t('admin.action.cancel')}</Button>
+                            </div>
+                          </TableCell>
+                        </>
+                      ) : (
+                        <>
+                          <TableCell className="font-medium">{keyword.phrase}</TableCell>
+                          <TableCell>{keyword.sourceUrl}</TableCell>
+                          <TableCell>{keyword.language}</TableCell>
+                          <TableCell>{keyword.volume.toLocaleString()}</TableCell>
+                          <TableCell>{keyword.trend}</TableCell>
+                          <TableCell>{keyword.status}</TableCell>
+                          <TableCell>
+                            <div className="flex gap-2">
+                              <Button size="sm" onClick={() => handleEditKeyword(index)}>{t('admin.action.edit')}</Button>
+                              <Button size="sm" variant="destructive" onClick={() => handleDeleteKeyword(index)}>{t('admin.action.delete')}</Button>
+                            </div>
+                          </TableCell>
+                        </>
+                      )}
                     </TableRow>
                   ))}
                 </TableBody>
