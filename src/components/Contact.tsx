@@ -116,6 +116,30 @@ const Contact = () => {
       location: bookingLocation,
     });
 
+    // Open user's email client with prefilled booking details to send to info@hardiman.se
+    try {
+      const subject = encodeURIComponent(
+        `${t('contact.booking.emailSubjectPrefix')} ${bookingName.trim()} - ${bookingDate}`,
+      );
+      const bodyLines = [
+        `${t('contact.booking.emailBodyLabel')}: ${bookingName.trim()}`,
+        `${t('contact.booking.emailBodyEmail')}: ${bookingEmail.trim()}`,
+        `${t('contact.booking.emailBodyPhone')}: ${bookingPhone.trim()}`,
+        `${t('contact.booking.emailBodyLocation')}: ${bookingLocation.trim()}`,
+        `${t('contact.booking.emailBodyService')}: ${bookingService}`,
+        `${t('contact.booking.emailBodyDate')}: ${bookingDate}`,
+        `${t('contact.booking.emailBodyDeposit')}: ${bookingDeposit} SEK`,
+        '',
+        `${t('contact.booking.emailBodyMessage')}:`,
+        bookingMessage.trim(),
+      ];
+      const body = encodeURIComponent(bodyLines.join('\n'));
+      const mailto = `mailto:info@hardiman.se?subject=${subject}&body=${body}`;
+      window.location.href = mailto;
+    } catch (e) {
+      // ignore mailto errors
+    }
+
     toast({
       title: t('contact.booking.successTitle'),
       description: t('contact.booking.successDescription'),
