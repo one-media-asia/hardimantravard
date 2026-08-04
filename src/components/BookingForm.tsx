@@ -109,16 +109,20 @@ const BookingForm = () => {
 
     const subjectText = `${t('contact.booking.emailSubjectPrefix')} ${bookingName.trim()} - ${bookingDate}`;
     const bodyLines = [
-      `${t('contact.booking.emailBodyLabel')}: ${bookingName.trim()}`,
-      `${t('contact.booking.emailBodyEmail')}: ${bookingEmail.trim()}`,
-      `${t('contact.booking.emailBodyPhone')}: ${bookingPhone.trim()}`,
-      `${t('contact.booking.emailBodyLocation')}: ${bookingLocation.trim()}`,
-      `${t('contact.booking.emailBodyService')}: ${bookingService}`,
-      `${t('contact.booking.emailBodyDate')}: ${bookingDate}`,
-      `${t('contact.booking.emailBodyDeposit')}: ${bookingDeposit} SEK`,
+      `New booking request from ${bookingName.trim()}`,
+      `----------------------------------------`,
+      `${t('contact.booking.emailEmail')}: ${bookingEmail.trim()}`,
+      `${t('contact.booking.emailPhone')}: ${bookingPhone.trim()}`,
+      `${t('contact.booking.emailLocation')}: ${bookingLocation.trim()}`,
+      `${t('contact.booking.emailService')}: ${bookingService}`,
+      `${t('contact.booking.emailDate')}: ${bookingDate}`,
+      `${t('contact.booking.emailDeposit')}: ${bookingDeposit} SEK`,
       '',
-      `${t('contact.booking.emailBodyMessage')}:`,
-      bookingMessage.trim(),
+      `${t('contact.booking.emailMessage')}:`,
+      bookingMessage.trim() || 'No message provided',
+      '',
+      `----------------------------------------`,
+      `Please respond to this request as soon as possible.`,
     ];
 
     const web3formsKey = (import.meta.env as any).VITE_WEB3FORMS_ACCESS_KEY as string | undefined;
