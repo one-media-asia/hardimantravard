@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useToast } from '@/components/ui/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -62,16 +64,29 @@ const AdminDashboard = () => {
   const [newStatus, setNewStatus] = useState<TrackedKeyword['status']>('Active');
   const [visitorSessions, setVisitorSessions] = useState<VisitorSession[]>([]);
   const [bookings, setBookings] = useState<Booking[]>([]);
+  const { toast } = useToast();
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
     setVisitorSessions(getVisitorSessions());
     // load bookings from localStorage
     try {
-      const saved = window.localStorage.getItem('hardiman-bookings');
-      if (saved) setBookings(JSON.parse(saved));
+      const hasSupabase = Boolean((import.meta.env as any).VITE_SUPABASE_URL && (import.meta.env as any).VITE_SUPABASE_PUBLISHABLE_KEY);
+      if (hasSupabase) {
+        const { data, error } = await supabase.from('bookings').select('*').order('createdAt', { ascending: false }).limit(200);
+        if (!error && Array.isArray(data)) {
+          setBookings(data as Booking[]);
+        } else {
+          const saved = window.localStorage.getItem('hardiman-bookings');
+          setBookings(saved ? JSON.parse(saved) : []);
+        }
+      } else {
+        const saved = window.localStorage.getItem('hardiman-bookings');
+        setBookings(saved ? JSON.parse(saved) : []);
+      }
     } catch (e) {
-      setBookings([]);
+      const saved = window.localStorage.getItem('hardiman-bookings');
+      setBookings(saved ? JSON.parse(saved) : []);
     }
   }, []);
 
@@ -80,24 +95,56 @@ const AdminDashboard = () => {
   };
 
   const loadBookings = () => {
-    if (typeof window === 'undefined') return;
-    try {
-      const saved = window.localStorage.getItem('hardiman-bookings');
-      setBookings(saved ? JSON.parse(saved) : []);
-    } catch {
-      setBookings([]);
-    }
+    (async () => {
+      if (typeof window === 'undefined') return;
+      try {
+        const hasSupabase = Boolean((import.meta.env as any).VITE_SUPABASE_URL && (import.meta.env as any).VITE_SUPABASE_PUBLISHABLE_KEY);
+        if (hasSupabase) {
+          const { data, error } = await supabase.from('bookings').select('*').order('createdAt', { ascending: false }).limit(200);
+          if (!error && Array.isArray(data)) {
+            setBookings(data as Booking[]);
+            return;
+          }
+        }
+      } catch (e) {
+        // ignore
+      }
+      try {
+        const saved = window.localStorage.getItem('hardiman-bookings');
+        setBookings(saved ? JSON.parse(saved) : []);
+      } catch {
+        setBookings([]);
+      }
+    })();
   };
 
   const deleteBooking = (id: string) => {
-    const updated = bookings.filter((b) => b.id !== id);
-    setBookings(updated);
-    if (typeof window !== 'undefined') window.localStorage.setItem('hardiman-bookings', JSON.stringify(updated));
+    (async () => {
+      const hasSupabase = Boolean((import.meta.env as any).VITE_SUPABASE_URL && (import.meta.env as any).VITE_SUPABASE_PUBLISHABLE_KEY);
+      if (hasSupabase) {
+        const { error } = await supabase.from('bookings').delete().eq('id', id);
+        if (error) {
+          toast({ title: 'Error', description: 'Failed to delete booking from Supabase', variant: 'destructive' });
+        }
+      }
+      const updated = bookings.filter((b) => b.id !== id);
+      setBookings(updated);
+      if (typeof window !== 'undefined') window.localStorage.setItem('hardiman-bookings', JSON.stringify(updated));
+    })();
   };
 
   const clearBookings = () => {
-    setBookings([]);
-    if (typeof window !== 'undefined') window.localStorage.removeItem('hardiman-bookings');
+    (async () => {
+      const hasSupabase = Boolean((import.meta.env as any).VITE_SUPABASE_URL && (import.meta.env as any).VITE_SUPABASE_PUBLISHABLE_KEY);
+      if (hasSupabase) {
+        const { error } = await supabase.from('bookings').delete().neq('id', '');
+        if (error) {
+          toast({ title: 'Error', description: 'Failed to clear bookings from Supabase', variant: 'destructive' });
+        }
+      }
+      setBookings([]);
+      if (typeof window !== 'undefined') window.localStorage.removeItem('hardiman-bookings');
+    })();
   };
 
   const totalSessions = visitorSessions.length;

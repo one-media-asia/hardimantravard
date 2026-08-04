@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { event as analyticsEvent } from '@/lib/analytics';
+import { supabase } from '@/integrations/supabase/client';
 
 const BookingForm = () => {
   const { t } = useLanguage();
@@ -59,21 +60,37 @@ const BookingForm = () => {
       return;
     }
 
-    if (typeof window !== 'undefined') {
-      const existing = JSON.parse(window.localStorage.getItem('hardiman-bookings') || '[]');
-      const booking = {
-        id: `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-        name: bookingName.trim(),
-        email: bookingEmail.trim(),
-        phone: bookingPhone.trim(),
-        location: bookingLocation.trim(),
-        service: bookingService,
-        preferredDate: bookingDate,
-        message: bookingMessage.trim(),
-        deposit: bookingDeposit,
-        createdAt: new Date().toISOString(),
-      };
-      window.localStorage.setItem('hardiman-bookings', JSON.stringify([booking, ...existing].slice(0, 50)));
+    const booking = {
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      name: bookingName.trim(),
+      email: bookingEmail.trim(),
+      phone: bookingPhone.trim(),
+      location: bookingLocation.trim(),
+      service: bookingService,
+      preferredDate: bookingDate,
+      message: bookingMessage.trim(),
+      deposit: bookingDeposit,
+      createdAt: new Date().toISOString(),
+    };
+
+    // Try to persist to Supabase first; fallback to localStorage on error or if not configured
+    const hasSupabase = Boolean((import.meta.env as any).VITE_SUPABASE_URL && (import.meta.env as any).VITE_SUPABASE_PUBLISHABLE_KEY);
+    if (hasSupabase) {
+      try {
+        const { error } = await supabase.from('bookings').insert([booking]);
+        if (error) throw error;
+      } catch (err) {
+        // fallback to localStorage
+        if (typeof window !== 'undefined') {
+          const existing = JSON.parse(window.localStorage.getItem('hardiman-bookings') || '[]');
+          window.localStorage.setItem('hardiman-bookings', JSON.stringify([booking, ...existing].slice(0, 50)));
+        }
+      }
+    } else {
+      if (typeof window !== 'undefined') {
+        const existing = JSON.parse(window.localStorage.getItem('hardiman-bookings') || '[]');
+        window.localStorage.setItem('hardiman-bookings', JSON.stringify([booking, ...existing].slice(0, 50)));
+      }
     }
 
     analyticsEvent('booking_form_submit', {
