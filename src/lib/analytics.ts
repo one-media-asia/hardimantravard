@@ -13,6 +13,7 @@ export type VisitorSession = {
   exitPage?: string;
   pagesVisited: string[];
   ipLocation: string;
+  location?: string;
 };
 
 declare global {

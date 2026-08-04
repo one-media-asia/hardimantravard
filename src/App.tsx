@@ -24,7 +24,11 @@ const Analytics = () => {
   useEffect(() => {
     const path = location.pathname + location.search;
     pageview(path, document.title);
-    trackVisitorPage(path);
+
+    const sendVisitorPage = async () => {
+      await trackVisitorPage(path);
+    };
+    sendVisitorPage();
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'hidden') {
