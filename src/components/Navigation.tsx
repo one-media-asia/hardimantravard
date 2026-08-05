@@ -68,8 +68,6 @@ const Navigation = () => {
   const navItems = [
     { id: 'home', label: t('nav.home'), isPage: false },
     { id: 'about', label: t('nav.services'), isPage: false },
-    { id: '/pricing', label: t('nav.pricing'), isPage: true },
-    { id: '/admin/login', label: t('nav.admin'), isPage: true },
     { id: 'contact', label: t('nav.contact'), isPage: false },
   ];
 
