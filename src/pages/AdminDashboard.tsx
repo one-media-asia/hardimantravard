@@ -404,7 +404,9 @@ const AdminDashboard = () => {
                     <TableRow>
                       <TableHead>{t('admin.visitor.column.sessionId')}</TableHead>
                       <TableHead>{t('admin.visitor.column.referrer')}</TableHead>
+                      <TableHead>{t('admin.visitor.column.startPage')}</TableHead>
                       <TableHead>{t('admin.visitor.column.pages')}</TableHead>
+                      <TableHead>{t('admin.visitor.column.exitPage')}</TableHead>
                       <TableHead>{t('admin.visitor.column.duration')}</TableHead>
                       <TableHead>{t('admin.visitor.column.ipLocation')}</TableHead>
                     </TableRow>
@@ -414,7 +416,25 @@ const AdminDashboard = () => {
                       <TableRow key={session.sessionId}>
                         <TableCell className="font-medium">{session.sessionId.slice(0, 8)}</TableCell>
                         <TableCell>{session.entranceReferrer || 'direct'}</TableCell>
+                        <TableCell>
+                          {(() => {
+                            try {
+                              return new URL(session.entrancePage).pathname + (new URL(session.entrancePage).search || '');
+                            } catch {
+                              return session.entrancePage || '-';
+                            }
+                          })()}
+                        </TableCell>
                         <TableCell>{session.pagesVisited.join(' → ')}</TableCell>
+                        <TableCell>
+                          {(() => {
+                            try {
+                              return session.exitPage ? (new URL(session.exitPage).pathname + (new URL(session.exitPage).search || '')) : '-';
+                            } catch {
+                              return session.exitPage || '-';
+                            }
+                          })()}
+                        </TableCell>
                         <TableCell>{session.durationSeconds != null ? `${session.durationSeconds}s` : 'active'}</TableCell>
                         <TableCell>{session.ipLocation || session.location || 'unknown'}</TableCell>
                       </TableRow>

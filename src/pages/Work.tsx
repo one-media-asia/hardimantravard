@@ -3,12 +3,6 @@ import { useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import treePruning from '@/assets/tree-pruning.jpg';
-import treeRemoval from '@/assets/tree-removal.jpg';
-import treeHealth from '@/assets/tree-health.jpg';
-import forestManagement from '@/assets/forest-management.jpg';
-import heritageTree from '@/assets/heritage-tree.jpg';
-import urbanPlanting from '@/assets/urban-planting.jpg';
 
 const Work = () => {
   const { t } = useLanguage();
@@ -40,15 +34,7 @@ const Work = () => {
     };
   }, [t]);
 
-  // Array of tree care images
-  const treeImages = [
-    treePruning,
-    treeRemoval,
-    treeHealth,
-    forestManagement,
-    heritageTree,
-    urbanPlanting
-  ];
+  // Image assets removed from Work page
 
   return (
     <div className="min-h-screen">
@@ -70,13 +56,7 @@ const Work = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
               {/* Project 1 */}
               <div className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all">
-                <div className="aspect-video bg-muted">
-                  <img 
-                    src={treeImages[0]} 
-                    alt="Tree pruning project" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <div className="aspect-video bg-muted"></div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">{t("work.project1.title")}</h3>
                   <p className="text-muted-foreground mb-4">{t("work.project1.description")}</p>
@@ -89,13 +69,7 @@ const Work = () => {
 
               {/* Project 2 */}
               <div className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all">
-                <div className="aspect-video bg-muted">
-                  <img 
-                    src={treeImages[1]} 
-                    alt="Tree removal project" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <div className="aspect-video bg-muted"></div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">{t("work.project2.title")}</h3>
                   <p className="text-muted-foreground mb-4">{t("work.project2.description")}</p>
@@ -108,13 +82,7 @@ const Work = () => {
 
               {/* Project 3 */}
               <div className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all">
-                <div className="aspect-video bg-muted">
-                  <img 
-                    src={treeImages[2]} 
-                    alt="Tree health assessment" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <div className="aspect-video bg-muted"></div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">{t("work.project3.title")}</h3>
                   <p className="text-muted-foreground mb-4">{t("work.project3.description")}</p>
@@ -127,13 +95,7 @@ const Work = () => {
 
               {/* Additional Projects */}
               <div className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all">
-                <div className="aspect-video bg-muted">
-                  <img 
-                    src={treeImages[3]} 
-                    alt="Forest management project" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <div className="aspect-video bg-muted"></div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">Forest Management</h3>
                   <p className="text-muted-foreground mb-4">Sustainable forest management practices for a large private woodland area.</p>
@@ -146,13 +108,7 @@ const Work = () => {
 
               {/* Additional Project */}
               <div className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all">
-                <div className="aspect-video bg-muted">
-                  <img 
-                    src={treeImages[4]} 
-                    alt="Heritage tree preservation" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <div className="aspect-video bg-muted"></div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">Heritage Tree Preservation</h3>
                   <p className="text-muted-foreground mb-4">Preserving and caring for century-old trees in a historic estate.</p>
@@ -165,13 +121,7 @@ const Work = () => {
 
               {/* Additional Project */}
               <div className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all">
-                <div className="aspect-video bg-muted">
-                  <img 
-                    src={treeImages[5]} 
-                    alt="Urban tree planting" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <div className="aspect-video bg-muted"></div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">Urban Tree Planting</h3>
                   <p className="text-muted-foreground mb-4">Increasing urban canopy coverage with strategic tree planting in city centers.</p>
