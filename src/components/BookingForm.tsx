@@ -15,10 +15,8 @@ const BookingForm = () => {
   const [bookingEmail, setBookingEmail] = useState('');
   const [bookingPhone, setBookingPhone] = useState('');
   const [bookingLocation, setBookingLocation] = useState('');
-  const [bookingService, setBookingService] = useState('Tree Pruning');
   const [bookingDate, setBookingDate] = useState('');
   const [bookingMessage, setBookingMessage] = useState('');
-  const [bookingDeposit, setBookingDeposit] = useState('1000');
 
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal');
@@ -40,14 +38,6 @@ const BookingForm = () => {
     };
   }, []);
 
-  const bookingServices = [
-    'Tree Pruning',
-    'Tree Removal',
-    'Tree Health Assessment',
-    'Site Visit',
-    'Other',
-  ];
-
   const handleBookingSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -66,10 +56,8 @@ const BookingForm = () => {
       email: bookingEmail.trim(),
       phone: bookingPhone.trim(),
       location: bookingLocation.trim(),
-      service: bookingService,
       preferredDate: bookingDate,
       message: bookingMessage.trim(),
-      deposit: bookingDeposit,
       createdAt: new Date().toISOString(),
     };
 
@@ -105,9 +93,7 @@ const BookingForm = () => {
     analyticsEvent('booking_form_submit', {
       name: bookingName.trim(),
       location: bookingLocation.trim(),
-      service: bookingService,
       preferredDate: bookingDate,
-      deposit: bookingDeposit,
     });
 
     const subjectText = `${t('contact.booking.emailSubjectPrefix')} ${bookingName.trim()} - ${bookingDate}`;
@@ -117,9 +103,7 @@ const BookingForm = () => {
       `${t('contact.booking.emailEmail')}: ${bookingEmail.trim()}`,
       `${t('contact.booking.emailPhone')}: ${bookingPhone.trim()}`,
       `${t('contact.booking.emailLocation')}: ${bookingLocation.trim()}`,
-      `${t('contact.booking.emailService')}: ${bookingService}`,
       `${t('contact.booking.emailDate')}: ${bookingDate}`,
-      `${t('contact.booking.emailDeposit')}: ${bookingDeposit} SEK`,
       '',
       `${t('contact.booking.emailMessage')}:`,
       bookingMessage.trim() || 'No message provided',
@@ -144,9 +128,7 @@ const BookingForm = () => {
             data: {
               phone: bookingPhone.trim(),
               location: bookingLocation.trim(),
-              service: bookingService,
               date: bookingDate,
-              deposit: bookingDeposit,
             },
           }),
         });
@@ -193,10 +175,8 @@ const BookingForm = () => {
     setBookingEmail('');
     setBookingPhone('');
     setBookingLocation('');
-    setBookingService('Tree Pruning');
     setBookingDate('');
     setBookingMessage('');
-    setBookingDeposit('1000');
   };
 
   return (
@@ -254,20 +234,6 @@ const BookingForm = () => {
                   required
                 />
               </label>
-              <label className="block text-sm font-medium">
-                {t('contact.booking.service')}
-                <select
-                  value={bookingService}
-                  onChange={(event) => setBookingService(event.target.value)}
-                  className="mt-2 block w-full rounded-md border border-input bg-background px-3 py-2 text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                >
-                  {bookingServices.map((service) => (
-                    <option key={service} value={service}>
-                      {service}
-                    </option>
-                  ))}
-                </select>
-              </label>
             </div>
 
             <div className="space-y-4">
@@ -279,18 +245,6 @@ const BookingForm = () => {
                   onChange={(event) => setBookingDate(event.target.value)}
                   required
                 />
-              </label>
-              <label className="block text-sm font-medium">
-                {t('contact.booking.deposit')}
-                <select
-                  value={bookingDeposit}
-                  onChange={(event) => setBookingDeposit(event.target.value)}
-                  className="mt-2 block w-full rounded-md border border-input bg-background px-3 py-2 text-base text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                >
-                  <option value="1000">1 000 SEK</option>
-                  <option value="2000">2 000 SEK</option>
-                  <option value="3000">3 000 SEK</option>
-                </select>
               </label>
               <label className="block text-sm font-medium col-span-2">
                 {t('contact.booking.message')}
