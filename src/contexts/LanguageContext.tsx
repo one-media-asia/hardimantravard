@@ -260,7 +260,7 @@ const translations = {
     "contact.byagreement": "By appointment",
     "contact.closed": "Closed",
     "contact.booking.title": "Book a Service",
-    "contact.booking.description": "Fill out the form below to book an appointment and reserve a deposit.",
+    "contact.booking.description": "Fill out the form below to book an appointment",
     "contact.booking.name": "Name",
     "contact.booking.namePlaceholder": "Your name",
     "contact.booking.email": "Email",
