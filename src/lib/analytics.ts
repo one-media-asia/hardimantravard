@@ -1,5 +1,4 @@
-const GA_MEASUREMENT_ID = 'G-7D1XJL0DVL';
-
+const GA_MEASUREMENT_ID = 'G-DPTK8X8BS5';
 const VISITOR_SESSION_KEY = 'hardiman-visitor-session';
 const VISITOR_SESSIONS_KEY = 'hardiman-visitor-sessions';
 
