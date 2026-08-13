@@ -93,13 +93,19 @@ const About = () => {
           </p>
         </div>
 
-        {/* Services list */}
-        <div className="mt-12 max-w-4xl mx-auto reveal">
-          <div className="space-y-8">
+        {/* Services as cards */}
+        <div className="mt-12 max-w-7xl mx-auto reveal">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {services.map((svc, i) => (
-              <div key={i} className="text-center">
-                <h3 className="text-2xl font-semibold mb-2">{svc.title}</h3>
-                <p className="text-muted-foreground max-w-3xl mx-auto">{svc.description}</p>
+              <div
+                key={i}
+                className="bg-background/50 backdrop-blur-sm rounded-2xl p-6 text-center border border-border/10"
+              >
+                <div className="flex items-center justify-center mb-4 text-primary">
+                  {svc.icon}
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{svc.title}</h3>
+                <p className="text-muted-foreground text-sm max-w-md mx-auto">{svc.description}</p>
               </div>
             ))}
           </div>
