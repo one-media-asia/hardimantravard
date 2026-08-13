@@ -93,6 +93,18 @@ const About = () => {
           </p>
         </div>
 
+        {/* Services list */}
+        <div className="mt-12 max-w-4xl mx-auto reveal">
+          <div className="space-y-8">
+            {services.map((svc, i) => (
+              <div key={i} className="text-center">
+                <h3 className="text-2xl font-semibold mb-2">{svc.title}</h3>
+                <p className="text-muted-foreground max-w-3xl mx-auto">{svc.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Stats section */}
         <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 reveal">
           {stats.map((stat, index) => (
