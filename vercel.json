@@ -1,6 +1,7 @@
 {
 	"routes": [
 		{ "src": "^/work(?:/.*)?$", "status": 410 },
+		{ "handle": "filesystem" },
 		{ "src": "^/(.*)$", "dest": "/index.html" }
 	]
 }
