@@ -17,6 +17,7 @@ const BookingForm = () => {
   const [bookingLocation, setBookingLocation] = useState('');
   const [bookingDate, setBookingDate] = useState('');
   const [bookingMessage, setBookingMessage] = useState('');
+  const [payDepositNow, setPayDepositNow] = useState(false);
 
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal');
@@ -254,9 +255,45 @@ const BookingForm = () => {
                   placeholder={t('contact.booking.messagePlaceholder')}
                 />
               </label>
-              <Button type="submit" className="w-full md:w-auto">
-                {t('contact.booking.button')}
-              </Button>
+              <div className="flex flex-col md:flex-row md:items-center md:gap-4">
+                <label className="flex items-center gap-3 text-sm">
+                  <input
+                    type="checkbox"
+                    checked={payDepositNow}
+                    onChange={(e) => setPayDepositNow(e.target.checked)}
+                    className="rounded"
+                  />
+                  <span>{t('contact.booking.payDepositOpt')}</span>
+                </label>
+
+                <div className="flex gap-3 mt-3 md:mt-0">
+                  <Button type="submit" className="w-full md:w-auto">
+                    {t('contact.booking.button')}
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      // Build payment URL with basic query params
+                      const params = new URLSearchParams();
+                      if (bookingName) params.set('name', bookingName);
+                      if (bookingEmail) params.set('email', bookingEmail);
+                      if (bookingDate) params.set('date', bookingDate);
+                      if (bookingLocation) params.set('location', bookingLocation);
+                      const url = `/payment?${params.toString()}`;
+                      if (payDepositNow) window.open(url, '_blank');
+                      else {
+                        // If checkbox not checked, toggle it to true and open
+                        setPayDepositNow(true);
+                        window.open(url, '_blank');
+                      }
+                    }}
+                    className="w-full md:w-auto"
+                  >
+                    {t('contact.booking.payDeposit')}
+                  </Button>
+                </div>
+              </div>
             </div>
           </form>
         </div>
