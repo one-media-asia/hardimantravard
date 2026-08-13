@@ -1,1 +1,6 @@
-{ "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }] }
+{
+	"routes": [
+		{ "src": "^/work(?:/.*)?$", "status": 404 },
+		{ "src": "^/(.*)$", "dest": "/index.html" }
+	]
+}
