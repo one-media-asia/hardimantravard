@@ -495,6 +495,7 @@ const AdminDashboard = () => {
                       <TableHead>{t('admin.bookings.column.name')}</TableHead>
                       <TableHead>{t('admin.bookings.column.email')}</TableHead>
                       <TableHead>{t('admin.bookings.column.phone')}</TableHead>
+                      <TableHead>{t('admin.bookings.column.message')}</TableHead>
                       <TableHead>{t('admin.bookings.column.date')}</TableHead>
                       <TableHead>{t('admin.bookings.column.deposit')}</TableHead>
                       <TableHead>{t('admin.bookings.column.notes')}</TableHead>
@@ -508,6 +509,16 @@ const AdminDashboard = () => {
                         <TableCell>{b.name}</TableCell>
                         <TableCell>{b.email}</TableCell>
                         <TableCell>{b.phone}</TableCell>
+                        <TableCell className="max-w-sm">
+                          <div className="flex items-start gap-2">
+                            <div className="text-sm text-muted-foreground break-words">{b.message ? (b.message.length > 120 ? `${b.message.slice(0, 120)}...` : b.message) : '—'}</div>
+                            {b.message ? (
+                              <Button size="sm" onClick={() => { navigator.clipboard?.writeText(b.message || ''); toast({ title: 'Message copied', description: 'Full message copied to clipboard.' }); }}>
+                                View
+                              </Button>
+                            ) : null}
+                          </div>
+                        </TableCell>
                         <TableCell>{b.preferredDate ?? '—'}</TableCell>
                         <TableCell>{b.deposit ? `${b.deposit} SEK` : '—'}</TableCell>
                         <TableCell>
