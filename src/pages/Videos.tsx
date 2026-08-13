@@ -9,16 +9,6 @@ const Videos = () => {
 
   useEffect(() => {
     document.title = `Hardiman.se - ${t('videos.title')}`;
-
-    // Load Google platform script for the YouTube subscribe button
-    const id = 'gplatform-js';
-    if (!document.getElementById(id)) {
-      const s = document.createElement('script');
-      s.id = id;
-      s.src = 'https://apis.google.com/js/platform.js';
-      s.async = true;
-      document.head.appendChild(s);
-    }
   }, [t]);
 
   return (
@@ -44,7 +34,14 @@ const Videos = () => {
               </a>
 
               <div>
-                <div className="g-ytsubscribe" data-channel="@hardimantreecare1302" data-layout="full" data-count="default"></div>
+                <a
+                  href="https://www.youtube.com/@hardimantreecare1302/videos"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-white"
+                >
+                  {t('videos.gotoChannel')}
+                </a>
               </div>
             </div>
           </div>
