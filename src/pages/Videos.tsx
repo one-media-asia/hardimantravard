@@ -24,15 +24,6 @@ const Videos = () => {
             <p className="text-muted-foreground mb-8">{t('videos.description')}</p>
 
             <div className="flex flex-col items-center gap-6">
-              <a
-                href="https://www.youtube.com/@hardimantreecare1302/videos"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary underline"
-              >
-                {t('videos.gotoChannel')}
-              </a>
-
               <div>
                 <a
                   href="https://www.youtube.com/@hardimantreecare1302/videos"
