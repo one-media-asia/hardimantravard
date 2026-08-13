@@ -15,6 +15,7 @@ import PaymentOptions from "./pages/PaymentOptions";
 import Booking from "./pages/Booking";
 import NotFound from "./pages/NotFound";
 import AboutPage from "./pages/AboutPage";
+import Videos from "./pages/Videos";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +63,7 @@ const App = () => (
             <Route path="/booking" element={<Booking />} />
             <Route path="/booking/*" element={<Booking />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/videos" element={<Videos />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route
               path="/admin"

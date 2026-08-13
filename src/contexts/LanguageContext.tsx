@@ -13,6 +13,7 @@ const translations = {
     // Navigation
     "nav.home": "Hem",
     "nav.services": "Tjänster",
+    "nav.videos": "Videoklipp",
     
     "nav.admin": "Admin",
     "nav.pricing": "Priser & Bokning",
@@ -133,6 +134,18 @@ const translations = {
     "pricing.conditions.item4": "Slutgiltig kostnad faktureras först när arbetet har bekräftats.",
 
     // Footer
+        // Videos
+        "videos.badge": "YouTube",
+        "videos.title": "Our Videos",
+        "videos.description": "Watch our latest work clips and projects on YouTube.",
+        "videos.gotoChannel": "Go to our YouTube channel",
+
+      // Videos
+      "videos.badge": "YouTube",
+      "videos.title": "Våra Videoklipp",
+      "videos.description": "Titta på våra senaste arbetsklipp och projekt på YouTube.",
+      "videos.gotoChannel": "Gå till vår YouTube-kanal",
+
     "footer.rights": "Alla rättigheter förbehållna.",
     "footer.certified": "Certified Arborist",
     "footer.member": "Hardimans Trädvård | Certifierade Arborister",
@@ -226,6 +239,7 @@ const translations = {
     // Navigation
     "nav.home": "Home",
     "nav.services": "Services",
+    "nav.videos": "Videos",
     
     "nav.admin": "Admin",
     "nav.contact": "Contact Us",
