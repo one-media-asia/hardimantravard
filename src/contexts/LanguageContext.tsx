@@ -13,7 +13,7 @@ const translations = {
     // Navigation
     "nav.home": "Hem",
     "nav.services": "Tjänster",
-    "nav.work": "Projekt",
+    
     "nav.admin": "Admin",
     "nav.pricing": "Priser & Bokning",
     "nav.contact": "Kontakta oss",
@@ -207,7 +207,7 @@ const translations = {
     // Navigation
     "nav.home": "Home",
     "nav.services": "Services",
-    "nav.work": "Projects",
+    
     "nav.admin": "Admin",
     "nav.contact": "Contact Us",
     "nav.pricing": "Pricing & Booking",
