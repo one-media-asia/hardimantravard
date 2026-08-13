@@ -8,7 +8,6 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { pageview, trackVisitorPage, endVisitorSession } from "@/lib/analytics";
 import Index from "./pages/Index";
-import Work from "./pages/Work";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminLogin from "./pages/AdminLogin";
 import ProtectedRoute from "./pages/ProtectedRoute";
@@ -55,7 +54,6 @@ const App = () => (
           <Analytics />
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/work" element={<Work />} />
             <Route path="/pricing" element={<PaymentOptions />} />
             <Route path="/pricing/*" element={<PaymentOptions />} />
             <Route path="/payment" element={<PaymentOptions />} />

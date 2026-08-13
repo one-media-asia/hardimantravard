@@ -73,7 +73,6 @@ const About = () => {
 
   const stats = [
     { value: "20+", label: t('stats.experience') },
-    { value: "3500+", label: t('stats.projects') },
     { value: "500+", label: t('stats.clients') },
     { value: "100%", label: t('stats.certified') }
   ];

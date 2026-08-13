@@ -50,12 +50,12 @@ const initialTrackedKeywords: TrackedKeyword[] = [
   { phrase: 'local certified arborist near me', sourceUrl: '/', language: 'EN', volume: 420, trend: 'Up', status: 'Active' },
   { phrase: 'professional tree care services', sourceUrl: '/services', language: 'EN', volume: 360, trend: 'Steady', status: 'Active' },
   { phrase: 'tree maintenance and health care', sourceUrl: '/services', language: 'EN', volume: 290, trend: 'Up', status: 'Monitoring' },
-  { phrase: 'expert tree pruning services', sourceUrl: '/work', language: 'EN', volume: 240, trend: 'Up', status: 'Active' },
+  { phrase: 'expert tree pruning services', sourceUrl: '/', language: 'EN', volume: 240, trend: 'Up', status: 'Active' },
   { phrase: 'safe tree removal service', sourceUrl: '/contact', language: 'EN', volume: 310, trend: 'Steady', status: 'Active' },
   { phrase: 'lokal certifierad tradarborist nara mig', sourceUrl: '/', language: 'SV', volume: 220, trend: 'Up', status: 'Active' },
   { phrase: 'professionella tradvardstjanster', sourceUrl: '/services', language: 'SV', volume: 200, trend: 'Steady', status: 'Active' },
   { phrase: 'tradvard och underhall', sourceUrl: '/services', language: 'SV', volume: 190, trend: 'Up', status: 'Monitoring' },
-  { phrase: 'professionell tradgallring och beskarning', sourceUrl: '/work', language: 'SV', volume: 160, trend: 'Up', status: 'Active' },
+  { phrase: 'professionell tradgallring och beskarning', sourceUrl: '/', language: 'SV', volume: 160, trend: 'Up', status: 'Active' },
   { phrase: 'certifierad tradarborist', sourceUrl: '/contact', language: 'SV', volume: 210, trend: 'Steady', status: 'Active' },
 ];
 

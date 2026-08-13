@@ -81,7 +81,8 @@ export function fetchWordPressContent(lang: WordPressLang): Promise<WordPressCon
 }
 
 export function fetchWordPressProjects(lang: WordPressLang): Promise<{ items: WordPressProject[] } | null> {
-  return fetchWordPress<{ items: WordPressProject[] }>('projects', lang);
+  // Projects are hidden in the UI — avoid fetching project list.
+  return Promise.resolve(null);
 }
 
 export function fetchWordPressServices(lang: WordPressLang): Promise<{ items: WordPressService[] } | null> {
