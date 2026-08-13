@@ -1,6 +1,6 @@
 {
 	"routes": [
-		{ "src": "^/work(?:/.*)?$", "status": 404 },
+		{ "src": "^/work(?:/.*)?$", "status": 410 },
 		{ "src": "^/(.*)$", "dest": "/index.html" }
 	]
 }
