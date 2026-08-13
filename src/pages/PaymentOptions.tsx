@@ -29,17 +29,9 @@ const PaymentOptions = () => {
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-8">
-              <div className="rounded-2xl border border-border bg-background/50 p-4 text-center">
-                <p className="text-sm text-muted-foreground">{t('pricing.example.small')}</p>
-                <p className="mt-2 text-2xl font-semibold">1 500 SEK</p>
-              </div>
-              <div className="rounded-2xl border border-border bg-background/50 p-4 text-center">
-                <p className="text-sm text-muted-foreground">{t('pricing.example.medium')}</p>
-                <p className="mt-2 text-2xl font-semibold">4 000 SEK</p>
-              </div>
-              <div className="rounded-2xl border border-border bg-background/50 p-4 text-center">
-                <p className="text-sm text-muted-foreground">{t('pricing.example.large')}</p>
-                <p className="mt-2 text-2xl font-semibold">10 000+ SEK</p>
+              <div className="rounded-2xl border border-border bg-background/50 p-6 text-center col-span-3">
+                <p className="text-sm text-muted-foreground mb-2">{t('pricing.example.small')}</p>
+                <p className="mt-2 text-lg font-medium">{t('pricing.contactForPricing')}</p>
               </div>
             </div>
 
