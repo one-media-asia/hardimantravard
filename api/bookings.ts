@@ -54,12 +54,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       payload.service || null,
       payload.preferredDate || null,
       payload.message || null,
+      payload.adminComment || null,
       payload.deposit ? Number(payload.deposit) : null,
       payload.createdAt || new Date().toISOString(),
     ];
 
-    const sql = `INSERT INTO bookings (id, name, email, phone, location, service, preferredDate, message, deposit, createdAt)
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    const sql = `INSERT INTO bookings (id, name, email, phone, location, service, preferredDate, message, adminComment, deposit, createdAt)
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     const pool = getPool();
     await pool.execute(sql, values);

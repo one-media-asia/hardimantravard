@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS public.bookings (
   service text,
   preferredDate date,
   message text,
+  adminComment text,
   deposit integer,
   createdAt timestamptz DEFAULT now()
 );

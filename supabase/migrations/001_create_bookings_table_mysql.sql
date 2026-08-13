@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS bookings (
   service VARCHAR(255),
   preferredDate DATE,
   message TEXT,
+  adminComment VARCHAR(1024),
   deposit INT,
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

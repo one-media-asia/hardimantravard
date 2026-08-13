@@ -30,6 +30,7 @@ type Booking = {
   service?: string;
   preferredDate?: string;
   message?: string;
+  adminComment?: string;
   deposit?: string;
   createdAt?: string;
 };
@@ -310,11 +311,40 @@ const AdminDashboard = () => {
     }
   };
 
-  const handleBookingNoteChange = (bookingId: string, value: string) => {
+  const handleBookingNoteChange = async (bookingId: string, value: string) => {
+    // Optimistically update local notes state
     setBookingNotes((current) => ({
       ...current,
       [bookingId]: value,
     }));
+
+    // If Supabase is configured, persist admin comment to the bookings table
+    try {
+      const hasSupabase = Boolean((import.meta.env as any).VITE_SUPABASE_URL && (import.meta.env as any).VITE_SUPABASE_PUBLISHABLE_KEY);
+      if (hasSupabase) {
+        const { error } = await supabase.from('bookings').update({ adminComment: value }).eq('id', bookingId);
+        if (!error) {
+          // Also update in-memory bookings array so UI reflects saved value
+          setBookings((current) => current.map((b) => (b.id === bookingId ? { ...b, adminComment: value } : b)));
+          // Persist to localStorage as backup as well
+          if (typeof window !== 'undefined') {
+            const existing = JSON.parse(window.localStorage.getItem(BOOKING_NOTES_KEY) || '{}');
+            existing[bookingId] = value;
+            window.localStorage.setItem(BOOKING_NOTES_KEY, JSON.stringify(existing));
+          }
+          return;
+        }
+      }
+    } catch (e) {
+      // ignore and fallback to localStorage
+    }
+
+    // Fallback: persist to localStorage when Supabase isn't available or update failed
+    if (typeof window !== 'undefined') {
+      const existing = JSON.parse(window.localStorage.getItem(BOOKING_NOTES_KEY) || '{}');
+      existing[bookingId] = value;
+      window.localStorage.setItem(BOOKING_NOTES_KEY, JSON.stringify(existing));
+    }
   };
 
   return (
